@@ -1,0 +1,155 @@
+[
+  {
+    "id": "running",
+    "name": "Running",
+    "icon": "🏃",
+    "tagline": "Speed is the name of the game!",
+    "format": "Individual + Team Relay",
+    "events": ["100m Sprint", "400m Run", "4×100m Relay"],
+    "pointsSystem": {
+      "individual": [
+        { "position": "1st", "points": 20 },
+        { "position": "2nd", "points": 15 },
+        { "position": "3rd", "points": 10 },
+        { "position": "Participant", "points": 5 }
+      ],
+      "relay": [
+        { "position": "1st Team", "points": 30 },
+        { "position": "2nd Team", "points": 20 },
+        { "position": "3rd Team", "points": 10 }
+      ]
+    },
+    "rules": [
+      "All participants must report 15 minutes before their event.",
+      "Standard athletics track rules apply. False starts result in disqualification on the second offence.",
+      "Relay baton must be passed within the exchange zone. Dropping the baton is allowed — you may pick it up.",
+      "Lane assignment is done by draw. No lane switching after the start.",
+      "Results are final as declared by the timekeeper.",
+      "Minimum 2 participants from each team must compete in each individual event.",
+      "Relay team composition must be declared 30 minutes before the event."
+    ]
+  },
+  {
+    "id": "badminton",
+    "name": "Badminton",
+    "icon": "🏸",
+    "tagline": "Smash your way to glory!",
+    "format": "Singles + Doubles Knockout",
+    "events": ["Men's Singles", "Women's Singles", "Mixed Doubles"],
+    "pointsSystem": {
+      "individual": [
+        { "position": "Winner", "points": 25 },
+        { "position": "Runner-up", "points": 18 },
+        { "position": "Semifinalist", "points": 10 },
+        { "position": "Quarterfinalist", "points": 5 }
+      ]
+    },
+    "rules": [
+      "BWF rules apply. Best of 3 games to 21 points with a 2-point lead. Cap at 30-29.",
+      "Service must be below the waist. Foot fault calls are final.",
+      "Players must use provided shuttlecocks only. Rackets are personal.",
+      "A 5-minute warm-up is allowed before matches begin.",
+      "If a player is not present within 5 minutes of being called, they forfeit the match.",
+      "Coaching from the sidelines is not allowed during play.",
+      "Each team must field at least 1 player per event category."
+    ]
+  },
+  {
+    "id": "chess",
+    "name": "Chess",
+    "icon": "♟️",
+    "tagline": "Think deep. Play bold.",
+    "format": "Swiss System – 4 Rounds",
+    "events": ["Rapid (15+0 minutes per player)"],
+    "pointsSystem": {
+      "individual": [
+        { "position": "1st Place", "points": 25 },
+        { "position": "2nd Place", "points": 20 },
+        { "position": "3rd Place", "points": 15 },
+        { "position": "4th Place", "points": 10 },
+        { "position": "Win (per round)", "points": 3 },
+        { "position": "Draw (per round)", "points": 1 },
+        { "position": "Loss (per round)", "points": 0 }
+      ]
+    },
+    "rules": [
+      "FIDE rules apply. Touch move is strictly enforced — if you touch a piece you must move it.",
+      "Time control: 15 minutes per player per game. No increment.",
+      "Clock must be pressed with the same hand used to move the piece.",
+      "Illegal moves result in a 2-minute time penalty; second illegal move is a forfeit.",
+      "No mobile phones or electronic devices allowed at the board.",
+      "Draws by agreement can only be offered after move 20.",
+      "Pairings are made using Swiss system — you will not face the same opponent twice.",
+      "In case of a score tie, tiebreakers are: Buchholz score, then Sonneborn-Berger."
+    ]
+  },
+  {
+    "id": "carrom",
+    "name": "Carrom",
+    "icon": "🎯",
+    "tagline": "Flick, pocket, win!",
+    "format": "Round Robin + Knockout Doubles",
+    "events": ["Doubles"],
+    "pointsSystem": {
+      "individual": [
+        { "position": "Winners", "points": 25 },
+        { "position": "Runners-up", "points": 18 },
+        { "position": "Semifinalists", "points": 10 },
+        { "position": "Quarterfinalists", "points": 5 }
+      ]
+    },
+    "rules": [
+      "ICF (International Carrom Federation) rules apply.",
+      "Each board game is played to 25 points or 8 boards, whichever comes first.",
+      "Players must strike from within their baseline. Overhanging coins must be replaced.",
+      "The queen must be covered (pocketed with a coin in the same strike) to score it.",
+      "If the striker falls into a pocket, the opponent receives 1 coin from the board as penalty.",
+      "Doubles partners sit opposite each other. No switching positions mid-game.",
+      "Team composition for doubles must be declared before the round robin draw.",
+      "Two teams from each group stage advance to the knockout rounds."
+    ]
+  },
+  {
+    "id": "dream11",
+    "name": "Dream11 – IPL Final",
+    "icon": "🏏",
+    "tagline": "Build your squad. Own the game!",
+    "format": "Inter-Team Fantasy Contest",
+    "events": ["IPL Final Fantasy Match"],
+    "pointsSystem": {
+      "fantasy": [
+        { "action": "Run scored", "points": 0.5 },
+        { "action": "Boundary bonus (4)", "points": 1 },
+        { "action": "Six bonus (6)", "points": 2 },
+        { "action": "30-run bonus", "points": 4 },
+        { "action": "Half-century bonus (50)", "points": 8 },
+        { "action": "Century bonus (100)", "points": 16 },
+        { "action": "Wicket (excl. run-out)", "points": 25 },
+        { "action": "LBW / Bowled bonus", "points": 8 },
+        { "action": "3-wicket haul bonus", "points": 4 },
+        { "action": "4-wicket haul bonus", "points": 8 },
+        { "action": "5-wicket haul bonus", "points": 16 },
+        { "action": "Maiden over", "points": 12 },
+        { "action": "Catch", "points": 8 },
+        { "action": "Stumping", "points": 12 },
+        { "action": "Run-out (direct)", "points": 12 },
+        { "action": "Run-out (indirect)", "points": 6 },
+        { "action": "Captain multiplier", "points": 2 },
+        { "action": "Vice-Captain multiplier", "points": 1.5 },
+        { "action": "Duck (batting, top 5)", "points": -2 }
+      ]
+    },
+    "rules": [
+      "Each team must submit one fantasy squad of exactly 11 players from the IPL Final match.",
+      "Squad must include: 1 WK, 3-5 Batters, 1-3 All-Rounders, 3-5 Bowlers.",
+      "Maximum 7 players from any single IPL team in your fantasy squad.",
+      "Designate 1 Captain (2× points) and 1 Vice-Captain (1.5× points) from your squad.",
+      "Squads must be submitted at least 30 minutes before the match toss.",
+      "Squads cannot be changed after the submission deadline.",
+      "Points are calculated based on official Dream11 scoring system (reference values in points table above).",
+      "The team with the highest total fantasy points wins the event.",
+      "In case of a tie, the team with the higher captain's points wins.",
+      "Winning team earns 40 team points; Runner-up earns 25; 3rd place earns 15."
+    ]
+  }
+]

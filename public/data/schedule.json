@@ -1,0 +1,62 @@
+[
+  {
+    "id": "ev-1",
+    "date": "2026-05-17",
+    "time": "09:00",
+    "game": "Running",
+    "type": "individual",
+    "description": "100m & 400m sprint races. Individual points + bonus for team performance.",
+    "venue": "Main Ground",
+    "status": "upcoming"
+  },
+  {
+    "id": "ev-2",
+    "date": "2026-05-18",
+    "time": "10:00",
+    "game": "Badminton",
+    "type": "team",
+    "description": "Singles & Doubles knockout rounds. Best of 3 sets.",
+    "venue": "Indoor Court",
+    "status": "upcoming"
+  },
+  {
+    "id": "ev-3",
+    "date": "2026-05-20",
+    "time": "14:00",
+    "game": "Chess",
+    "type": "individual",
+    "description": "Swiss system tournament. 4 rounds, 15 min per player.",
+    "venue": "Conference Hall",
+    "status": "upcoming"
+  },
+  {
+    "id": "ev-4",
+    "date": "2026-05-22",
+    "time": "11:00",
+    "game": "Carrom",
+    "type": "team",
+    "description": "Round robin doubles followed by knockout semifinals & finals.",
+    "venue": "Recreation Room",
+    "status": "upcoming"
+  },
+  {
+    "id": "ev-5",
+    "date": "2026-05-25",
+    "time": "19:30",
+    "game": "Dream11 – IPL Final",
+    "type": "team",
+    "description": "Inter-team fantasy cricket contest. IPL Final match. Max 11 players per team squad.",
+    "venue": "Online / Screen Room",
+    "status": "upcoming"
+  },
+  {
+    "id": "ev-6",
+    "date": "2026-05-31",
+    "time": "18:00",
+    "game": "Grand Finale & Prize Distribution",
+    "type": "ceremony",
+    "description": "Final leaderboard reveal, trophies, certificates, and celebration.",
+    "venue": "Main Hall",
+    "status": "upcoming"
+  }
+]

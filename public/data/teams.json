@@ -1,0 +1,82 @@
+[
+  {
+    "id": "team-alpha",
+    "name": "Team Alpha",
+    "color": "#ef4444",
+    "emoji": "🔴",
+    "captain": "Arjun Sharma",
+    "viceCaptain": "Priya Nair",
+    "players": [
+      { "name": "Arjun Sharma", "points": 95 },
+      { "name": "Priya Nair", "points": 88 },
+      { "name": "Ravi Kumar", "points": 76 },
+      { "name": "Sneha Patel", "points": 70 },
+      { "name": "Karthik Raj", "points": 65 },
+      { "name": "Divya Menon", "points": 60 },
+      { "name": "Anil Verma", "points": 55 },
+      { "name": "Meera Iyer", "points": 50 },
+      { "name": "Suresh Babu", "points": 45 },
+      { "name": "Lakshmi Das", "points": 40 }
+    ]
+  },
+  {
+    "id": "team-beta",
+    "name": "Team Beta",
+    "color": "#3b82f6",
+    "emoji": "🔵",
+    "captain": "Vikram Singh",
+    "viceCaptain": "Anita Reddy",
+    "players": [
+      { "name": "Vikram Singh", "points": 92 },
+      { "name": "Anita Reddy", "points": 85 },
+      { "name": "Manoj Tiwari", "points": 80 },
+      { "name": "Kavya Krishnan", "points": 72 },
+      { "name": "Rohit Gupta", "points": 68 },
+      { "name": "Pooja Sharma", "points": 62 },
+      { "name": "Deepak Yadav", "points": 58 },
+      { "name": "Nisha Pillai", "points": 48 },
+      { "name": "Sanjay More", "points": 43 },
+      { "name": "Rekha Joshi", "points": 38 }
+    ]
+  },
+  {
+    "id": "team-gamma",
+    "name": "Team Gamma",
+    "color": "#22c55e",
+    "emoji": "🟢",
+    "captain": "Rahul Mehta",
+    "viceCaptain": "Sunita Chauhan",
+    "players": [
+      { "name": "Rahul Mehta", "points": 98 },
+      { "name": "Sunita Chauhan", "points": 83 },
+      { "name": "Ajay Patil", "points": 77 },
+      { "name": "Geeta Nambiar", "points": 71 },
+      { "name": "Siddharth Rao", "points": 66 },
+      { "name": "Bhavna Shah", "points": 61 },
+      { "name": "Manish Dubey", "points": 56 },
+      { "name": "Preethi Srinivas", "points": 51 },
+      { "name": "Vinod Kaur", "points": 46 },
+      { "name": "Jyoti Bose", "points": 41 }
+    ]
+  },
+  {
+    "id": "team-delta",
+    "name": "Team Delta",
+    "color": "#f59e0b",
+    "emoji": "🟡",
+    "captain": "Nitin Bansal",
+    "viceCaptain": "Swati Agarwal",
+    "players": [
+      { "name": "Nitin Bansal", "points": 90 },
+      { "name": "Swati Agarwal", "points": 86 },
+      { "name": "Tarun Saxena", "points": 79 },
+      { "name": "Hema Lal", "points": 73 },
+      { "name": "Pavan Hegde", "points": 67 },
+      { "name": "Ritu Malhotra", "points": 63 },
+      { "name": "Gaurav Tomar", "points": 57 },
+      { "name": "Shilpa Chatterjee", "points": 52 },
+      { "name": "Rajesh Nair", "points": 47 },
+      { "name": "Anjali Desai", "points": 42 }
+    ]
+  }
+]

@@ -1,0 +1,230 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import "ag-grid-community/styles/ag-grid.css";
+@import "ag-grid-community/styles/ag-theme-alpine.css";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ══════════════════════════════════════════
+   THEME TOKENS
+   All components use these CSS variables.
+   Switching data-theme on <html> flips everything.
+══════════════════════════════════════════ */
+:root,
+[data-theme="dark"] {
+  --bg-base:          #020817;
+  --bg-surface:       rgba(255,255,255,0.05);
+  --bg-surface-2:     rgba(255,255,255,0.08);
+  --bg-overlay:       rgba(0,0,0,0.4);
+  --border:           rgba(255,255,255,0.10);
+  --border-strong:    rgba(255,255,255,0.18);
+  --text-primary:     #f8fafc;
+  --text-secondary:   #94a3b8;
+  --text-muted:       #475569;
+  --nav-bg:           rgba(2,8,23,0.85);
+  --card-hover:       rgba(255,255,255,0.04);
+  --skeleton-a:       rgba(255,255,255,0.04);
+  --skeleton-b:       rgba(255,255,255,0.09);
+  --completed-bg:     rgba(34,197,94,0.06);
+  --completed-border: rgba(34,197,94,0.20);
+  --timeline-line:    rgba(255,255,255,0.08);
+  --dot-bg:           #0f172a;
+  /* Accent — visible on dark */
+  --accent:           #f59e0b;
+  --accent-text:      #f59e0b;
+  --accent-bg:        rgba(245,158,11,0.12);
+  --accent-border:    rgba(245,158,11,0.30);
+  --accent-hover-bg:  rgba(245,158,11,0.18);
+  /* Nav active state */
+  --nav-active-bg:    rgba(245,158,11,0.12);
+  --nav-active-text:  #f59e0b;
+}
+
+[data-theme="light"] {
+  --bg-base:          #f1f5f9;
+  --bg-surface:       #ffffff;
+  --bg-surface-2:     #f8fafc;
+  --bg-overlay:       rgba(255,255,255,0.85);
+  --border:           rgba(0,0,0,0.09);
+  --border-strong:    rgba(0,0,0,0.16);
+  --text-primary:     #0f172a;
+  --text-secondary:   #334155;
+  --text-muted:       #64748b;
+  --nav-bg:           rgba(255,255,255,0.92);
+  --card-hover:       rgba(0,0,0,0.03);
+  --skeleton-a:       rgba(0,0,0,0.05);
+  --skeleton-b:       rgba(0,0,0,0.10);
+  --completed-bg:     rgba(34,197,94,0.07);
+  --completed-border: rgba(34,197,94,0.28);
+  --timeline-line:    rgba(0,0,0,0.10);
+  --dot-bg:           #f1f5f9;
+  /* Accent — darker gold for legibility on white */
+  --accent:           #b45309;
+  --accent-text:      #92400e;
+  --accent-bg:        rgba(180,83,9,0.10);
+  --accent-border:    rgba(180,83,9,0.25);
+  --accent-hover-bg:  rgba(180,83,9,0.15);
+  /* Nav active state */
+  --nav-active-bg:    rgba(180,83,9,0.10);
+  --nav-active-text:  #92400e;
+}
+
+/* ── Base ── */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+*::-webkit-scrollbar { display: none; }
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--bg-base);
+  color: var(--text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+a { text-decoration: inherit; color: inherit; }
+
+/* ── Theme-aware utility classes ── */
+.pv-surface   { background: var(--bg-surface); border: 1px solid var(--border); }
+.pv-surface-2 { background: var(--bg-surface-2); }
+.pv-border    { border-color: var(--border); }
+.pv-text      { color: var(--text-primary); }
+.pv-muted     { color: var(--text-secondary); }
+.pv-faint     { color: var(--text-muted); }
+
+/* Light-mode: cards need backdrop shadow instead of glow borders */
+[data-theme="light"] .pv-surface {
+  box-shadow: 0 1px 6px rgba(0,0,0,0.08), 0 0 0 1px rgba(0,0,0,0.06);
+}
+
+/* ── Light-mode global overrides ──────────────────────────────
+   Tailwind hardcodes colours (text-white, text-amber-400, text-slate-400, etc.)
+   These overrides flip them to readable equivalents on a white background.
+   We only override inside [data-theme="light"] so dark mode is untouched.
+─────────────────────────────────────────────────────────────── */
+
+/* White text → near-black */
+[data-theme="light"] .text-white   { color: #0f172a !important; }
+
+/* amber-400 (#fbbf24) is near-invisible on white — use dark amber */
+[data-theme="light"] .text-amber-400  { color: #92400e !important; }
+[data-theme="light"] .text-amber-300  { color: #78350f !important; }
+[data-theme="light"] .text-amber-200  { color: #78350f !important; }
+[data-theme="light"] .border-amber-400\/20,
+[data-theme="light"] .border-amber-400\/25,
+[data-theme="light"] .border-amber-400\/30 { border-color: rgba(180,83,9,0.30) !important; }
+[data-theme="light"] .bg-amber-400\/10 { background: rgba(180,83,9,0.10) !important; }
+[data-theme="light"] .bg-amber-400    { background: #b45309 !important; }
+[data-theme="light"] .text-amber-400\/60,
+[data-theme="light"] .text-amber-400\/70 { color: #92400e !important; opacity: 0.85; }
+
+/* slate-400 / slate-500 are too light on slate-50 bg */
+[data-theme="light"] .text-slate-400 { color: #475569 !important; }
+[data-theme="light"] .text-slate-500 { color: #64748b !important; }
+[data-theme="light"] .text-slate-300 { color: #334155 !important; }
+
+/* White/transparent bg surfaces */
+[data-theme="light"] .bg-white\/5  { background: rgba(0,0,0,0.04) !important; }
+[data-theme="light"] .bg-white\/8  { background: rgba(0,0,0,0.06) !important; }
+[data-theme="light"] .bg-white\/10 { background: rgba(0,0,0,0.07) !important; }
+[data-theme="light"] .bg-black\/20 { background: rgba(0,0,0,0.05) !important; }
+[data-theme="light"] .bg-black\/30 { background: rgba(0,0,0,0.07) !important; }
+
+/* White borders */
+[data-theme="light"] .border-white\/5  { border-color: rgba(0,0,0,0.07) !important; }
+[data-theme="light"] .border-white\/10 { border-color: rgba(0,0,0,0.09) !important; }
+[data-theme="light"] .border-white\/15 { border-color: rgba(0,0,0,0.12) !important; }
+
+/* Green / blue / purple accents — keep them slightly deeper in light mode for contrast */
+[data-theme="light"] .text-green-400 { color: #15803d !important; }
+[data-theme="light"] .text-blue-400  { color: #1d4ed8 !important; }
+[data-theme="light"] .text-slate-600 { color: #475569 !important; }
+
+/* Skeleton on light */
+[data-theme="light"] .skeleton {
+  background: linear-gradient(90deg,
+    rgba(0,0,0,0.06) 25%,
+    rgba(0,0,0,0.11) 50%,
+    rgba(0,0,0,0.06) 75%
+  ) !important;
+}
+
+/* ── Animations ── */
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes shimmer {
+  0%   { background-position: -600px 0; }
+  100% { background-position: 600px 0; }
+}
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(251,191,36,0); }
+  50%       { box-shadow: 0 0 28px 4px rgba(251,191,36,0.15); }
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-6px); }
+}
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+@keyframes completed-stamp {
+  0%   { opacity: 0; transform: scale(1.4) rotate(-12deg); }
+  60%  { transform: scale(0.95) rotate(-6deg); }
+  100% { opacity: 1; transform: scale(1) rotate(-6deg); }
+}
+
+.animate-fade-up     { animation: fade-up 0.55s cubic-bezier(0.16,1,0.3,1) both; }
+.animate-fade-in     { animation: fade-in 0.5s ease both; }
+.animate-pulse-glow  { animation: pulse-glow 2.5s ease-in-out infinite; }
+.animate-float       { animation: float 3s ease-in-out infinite; }
+.animate-spin-slow   { animation: spin-slow 8s linear infinite; }
+.animate-stamp       { animation: completed-stamp 0.4s cubic-bezier(0.16,1,0.3,1) both; }
+
+/* Stagger delays */
+.delay-0   { animation-delay: 0ms; }
+.delay-75  { animation-delay: 75ms; }
+.delay-150 { animation-delay: 150ms; }
+.delay-200 { animation-delay: 200ms; }
+.delay-300 { animation-delay: 300ms; }
+.delay-400 { animation-delay: 400ms; }
+.delay-500 { animation-delay: 500ms; }
+
+/* Skeleton */
+.skeleton {
+  background: linear-gradient(90deg,
+    var(--skeleton-a) 25%,
+    var(--skeleton-b) 50%,
+    var(--skeleton-a) 75%
+  );
+  background-size: 800px 100%;
+  animation: shimmer 1.4s infinite;
+  border-radius: 12px;
+}
+
+/* ── AG Grid ── */
+.rp-grid.ag-theme-alpine {
+  --ag-font-family: 'Inter', sans-serif;
+  --ag-font-size: 12px;
+  --ag-background-color: transparent;
+  --ag-border-color: var(--border);
+  --ag-row-border-color: var(--border);
+  --ag-header-background-color: var(--bg-surface);
+  --ag-header-foreground-color: var(--text-secondary);
+  --ag-row-hover-color: var(--card-hover);
+  --ag-cell-horizontal-padding: 16px;
+  --ag-header-column-separator-display: none;
+  --ag-borders: solid 1px;
+  --ag-border-radius: 0;
+  --ag-wrapper-border-radius: 0;
+}
