@@ -1,0 +1,122 @@
+{
+  "constraints": {
+    "squadSize": 11,
+    "maxFromOneIPLTeam": 7,
+    "wk":   { "min": 1, "max": 1 },
+    "bat":  { "min": 3, "max": 5 },
+    "ar":   { "min": 1, "max": 3 },
+    "bowl": { "min": 3, "max": 5 }
+  },
+  "scoring": {
+    "batting": [
+      { "action": "Run scored",                "points": 0.5  },
+      { "action": "Boundary bonus (4)",         "points": 1    },
+      { "action": "Six bonus (6)",              "points": 2    },
+      { "action": "30-run bonus",               "points": 4    },
+      { "action": "Half-century bonus (50+)",   "points": 8    },
+      { "action": "Century bonus (100+)",       "points": 16   },
+      { "action": "Duck (top 5 batting order)", "points": -2   }
+    ],
+    "bowling": [
+      { "action": "Wicket (excl. run-out)",  "points": 25 },
+      { "action": "LBW / Bowled bonus",      "points": 8  },
+      { "action": "3-wicket haul bonus",     "points": 4  },
+      { "action": "4-wicket haul bonus",     "points": 8  },
+      { "action": "5-wicket haul bonus",     "points": 16 },
+      { "action": "Maiden over",             "points": 12 }
+    ],
+    "fielding": [
+      { "action": "Catch",               "points": 8  },
+      { "action": "Stumping",            "points": 12 },
+      { "action": "Run-out (direct)",    "points": 12 },
+      { "action": "Run-out (indirect)",  "points": 6  }
+    ],
+    "multipliers": [
+      { "action": "Captain multiplier",      "points": 2   },
+      { "action": "Vice-Captain multiplier", "points": 1.5 }
+    ]
+  },
+  "rounds": [
+    {
+      "id": "playoffs",
+      "label": "Playoffs",
+      "icon": "🏏",
+      "playersCSV": "data/dream11/playoffs/players.csv",
+      "scoresCSV": "data/dream11/playoffs/scores.csv",
+      "match": {
+        "matchTitle": "IPL Playoffs 2026",
+        "team1": "TBD",
+        "team2": "TBD",
+        "team1Short": "TBD",
+        "team2Short": "TBD",
+        "team1Color": "#94a3b8",
+        "team2Color": "#94a3b8",
+        "venue": "TBD",
+        "date": "TBD",
+        "time": "TBD",
+        "deadline": null,
+        "status": "upcoming"
+      },
+      "playvistaTeamSquads": [
+        { "teamId": "team-alpha", "submittedBy": "Arjun Sharma",  "submittedAt": null, "status": "pending", "squad": [], "captain": null, "viceCaptain": null, "totalFantasyPoints": null },
+        { "teamId": "team-beta",  "submittedBy": "Vikram Singh",  "submittedAt": null, "status": "pending", "squad": [], "captain": null, "viceCaptain": null, "totalFantasyPoints": null },
+        { "teamId": "team-gamma", "submittedBy": "Rahul Mehta",   "submittedAt": null, "status": "pending", "squad": [], "captain": null, "viceCaptain": null, "totalFantasyPoints": null },
+        { "teamId": "team-delta", "submittedBy": "Nitin Bansal",  "submittedAt": null, "status": "pending", "squad": [], "captain": null, "viceCaptain": null, "totalFantasyPoints": null }
+      ]
+    },
+    {
+      "id": "semis",
+      "label": "Semifinals",
+      "icon": "⚡",
+      "playersCSV": "data/dream11/semis/players.csv",
+      "scoresCSV": "data/dream11/semis/scores.csv",
+      "match": {
+        "matchTitle": "IPL Semifinals 2026",
+        "team1": "TBD",
+        "team2": "TBD",
+        "team1Short": "TBD",
+        "team2Short": "TBD",
+        "team1Color": "#94a3b8",
+        "team2Color": "#94a3b8",
+        "venue": "TBD",
+        "date": "TBD",
+        "time": "TBD",
+        "deadline": null,
+        "status": "upcoming"
+      },
+      "playvistaTeamSquads": [
+        { "teamId": "team-alpha", "submittedBy": "Arjun Sharma",  "submittedAt": null, "status": "pending", "squad": [], "captain": null, "viceCaptain": null, "totalFantasyPoints": null },
+        { "teamId": "team-beta",  "submittedBy": "Vikram Singh",  "submittedAt": null, "status": "pending", "squad": [], "captain": null, "viceCaptain": null, "totalFantasyPoints": null },
+        { "teamId": "team-gamma", "submittedBy": "Rahul Mehta",   "submittedAt": null, "status": "pending", "squad": [], "captain": null, "viceCaptain": null, "totalFantasyPoints": null },
+        { "teamId": "team-delta", "submittedBy": "Nitin Bansal",  "submittedAt": null, "status": "pending", "squad": [], "captain": null, "viceCaptain": null, "totalFantasyPoints": null }
+      ]
+    },
+    {
+      "id": "finals",
+      "label": "Finals",
+      "icon": "🏆",
+      "playersCSV": "data/dream11/finals/players.csv",
+      "scoresCSV": "data/dream11/finals/scores.csv",
+      "match": {
+        "matchTitle": "IPL Final 2026",
+        "team1": "Royal Challengers Bengaluru",
+        "team2": "Mumbai Indians",
+        "team1Short": "RCB",
+        "team2Short": "MI",
+        "team1Color": "#C8102E",
+        "team2Color": "#004BA0",
+        "venue": "Narendra Modi Stadium, Ahmedabad",
+        "date": "2026-05-26",
+        "time": "19:30",
+        "deadline": "2026-05-26T19:00:00",
+        "status": "upcoming"
+      },
+      "playvistaTeamSquads": [
+        { "teamId": "team-alpha", "submittedBy": "Arjun Sharma",  "submittedAt": null, "status": "pending", "squad": [], "captain": null, "viceCaptain": null, "totalFantasyPoints": null },
+        { "teamId": "team-beta",  "submittedBy": "Vikram Singh",  "submittedAt": null, "status": "pending", "squad": [], "captain": null, "viceCaptain": null, "totalFantasyPoints": null },
+        { "teamId": "team-gamma", "submittedBy": "Rahul Mehta",   "submittedAt": null, "status": "pending", "squad": [], "captain": null, "viceCaptain": null, "totalFantasyPoints": null },
+        { "teamId": "team-delta", "submittedBy": "Nitin Bansal",  "submittedAt": null, "status": "pending", "squad": [], "captain": null, "viceCaptain": null, "totalFantasyPoints": null }
+      ]
+    }
+  ]
+}

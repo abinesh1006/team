@@ -3,11 +3,16 @@ import { NavLink, Outlet } from 'react-router-dom';
 import { Trophy, Calendar, BookOpen, Users, LayoutDashboard, Menu, X, Shield, Sun, Moon } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
 
+function CricketIcon({ className }: { className?: string }) {
+  return <span className={className} style={{ fontSize: '1em', lineHeight: 1 }}>🏏</span>;
+}
+
 const NAV = [
   { to: '/', label: 'Dashboard', icon: LayoutDashboard, end: true },
   { to: '/teams', label: 'Teams', icon: Users },
   { to: '/schedule', label: 'Schedule', icon: Calendar },
   { to: '/rules', label: 'Rules', icon: BookOpen },
+  { to: '/dream11', label: 'Dream11', icon: CricketIcon },
   { to: '/admin', label: 'Admin', icon: Shield },
 ];
 

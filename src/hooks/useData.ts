@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import type { Team, ScheduleEvent, Game } from '../types';
+import type { Team, ScheduleEvent, Game, Dream11Data, IPLPlayer, PlayerRole, PlayerPerformance } from '../types';
 
 export interface QuoteSet {
   intro: string[];
@@ -37,6 +37,112 @@ export function useGames() {
 
 export function useQuotes() {
   return useFetch<QuoteSet>('data/quotes.json');
+}
+
+export function useDream11() {
+  return useFetch<Dream11Data>('data/dream11.json');
+}
+
+function parseCSV(text: string): IPLPlayer[] {
+  const [headerLine, ...rows] = text.trim().split('\n');
+  const headers = headerLine.split(',').map(h => h.trim());
+
+  return rows
+    .filter(row => row.trim())
+    .map(row => {
+      // Handle values that might contain commas (quoted fields)
+      const values: string[] = [];
+      let cur = '';
+      let inQuote = false;
+      for (const ch of row) {
+        if (ch === '"') { inQuote = !inQuote; }
+        else if (ch === ',' && !inQuote) { values.push(cur.trim()); cur = ''; }
+        else cur += ch;
+      }
+      values.push(cur.trim());
+
+      const get = (key: string) => values[headers.indexOf(key)] ?? '';
+
+      return {
+        id:              get('id'),
+        name:            get('name'),
+        role:            get('role') as PlayerRole,
+        iplTeam:         get('iplTeam'),
+        credits:         parseFloat(get('credits')),
+        battingOrder:    parseInt(get('battingOrder'), 10),
+        isCaptainOption: get('isCaptainOption') === 'true',
+        stats: {
+          runs:    parseFloat(get('runs'))    || 0,
+          avg:     parseFloat(get('avg'))     || 0,
+          sr:      parseFloat(get('sr'))      || 0,
+          wickets: parseFloat(get('wickets')) || 0,
+          economy: get('economy') ? parseFloat(get('economy')) : null,
+        },
+      } satisfies IPLPlayer;
+    });
+}
+
+function parseScoresCSV(text: string): PlayerPerformance[] {
+  const [headerLine, ...rows] = text.trim().split('\n');
+  if (!headerLine) return [];
+  const headers = headerLine.split(',').map(h => h.trim());
+
+  return rows
+    .filter(row => row.trim())
+    .map(row => {
+      const values = row.split(',').map(v => v.trim());
+      const get = (key: string) => values[headers.indexOf(key)] ?? '';
+      const num = (key: string) => { const v = get(key); return v === '' ? undefined : Number(v); };
+      const bool = (key: string) => get(key) === 'true' ? true : get(key) === 'false' ? false : undefined;
+
+      const perf: PlayerPerformance = { playerId: get('playerId') };
+      const runs = num('runs'); if (runs !== undefined) perf.runs = runs;
+      const fours = num('fours'); if (fours !== undefined) perf.fours = fours;
+      const sixes = num('sixes'); if (sixes !== undefined) perf.sixes = sixes;
+      const isDuck = bool('isDuck'); if (isDuck !== undefined) perf.isDuck = isDuck;
+      const wickets = num('wickets'); if (wickets !== undefined) perf.wickets = wickets;
+      const maidens = num('maidens'); if (maidens !== undefined) perf.maidens = maidens;
+      const lbwBowled = bool('lbwBowled'); if (lbwBowled !== undefined) perf.lbwBowled = lbwBowled;
+      const catches = num('catches'); if (catches !== undefined) perf.catches = catches;
+      const stumpings = num('stumpings'); if (stumpings !== undefined) perf.stumpings = stumpings;
+      const runOutDirect = num('runOutDirect'); if (runOutDirect !== undefined) perf.runOutDirect = runOutDirect;
+      const runOutIndirect = num('runOutIndirect'); if (runOutIndirect !== undefined) perf.runOutIndirect = runOutIndirect;
+      return perf;
+    })
+    .filter(p => p.playerId);
+}
+
+export function useRoundScores(csvPath: string) {
+  const [data, setData] = useState<PlayerPerformance[] | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    setData(null);
+    setLoading(true);
+    setError(null);
+    fetch(`${BASE}${csvPath}`)
+      .then(r => { if (!r.ok) throw new Error(`Failed to load ${csvPath}`); return r.text(); })
+      .then(text => { setData(parseScoresCSV(text)); setLoading(false); })
+      .catch((e: Error) => { setError(e.message); setLoading(false); });
+  }, [csvPath]);
+
+  return { data, loading, error };
+}
+
+export function useCricketPlayers(csvPath: string) {
+  const [data, setData] = useState<IPLPlayer[] | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    fetch(`${BASE}${csvPath}`)
+      .then(r => { if (!r.ok) throw new Error(`Failed to load ${csvPath}`); return r.text(); })
+      .then(text => { setData(parseCSV(text)); setLoading(false); })
+      .catch((e: Error) => { setError(e.message); setLoading(false); });
+  }, [csvPath]);
+
+  return { data, loading, error };
 }
 
 // Kept for Admin compatibility — no-op save since we're JSON-only now

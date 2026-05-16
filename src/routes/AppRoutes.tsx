@@ -6,6 +6,7 @@ import TeamLeaderboard from '../components/TeamLeaderboard';
 import Schedule from '../components/Schedule';
 import Rules from '../components/Rules';
 import Admin from '../components/Admin';
+import Dream11 from '../components/Dream11';
 import IntroScreen, { useIntroSeen } from '../components/IntroScreen';
 import { useQuotes } from '../hooks/useData';
 
@@ -26,6 +27,7 @@ export default function AppRoutes() {
           <Route path="schedule" element={<Schedule />} />
           <Route path="rules" element={<Rules />} />
           <Route path="rules/:gameId" element={<Rules />} />
+          <Route path="dream11" element={<Dream11 />} />
           <Route path="admin" element={<Admin />} />
         </Route>
       </Routes>

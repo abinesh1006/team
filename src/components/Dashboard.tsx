@@ -661,11 +661,12 @@ export default function Dashboard() {
 
           {/* Quick nav */}
           <Reveal from="right" delay={80}>
-            <div className="grid grid-cols-2 gap-2">
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
               {[
                 { icon: '📅', label: 'Schedule', sub: `${upcomingCount} left`,  to: '/schedule', color: '#34d399' },
                 { icon: '📖', label: 'Rules',    sub: '5 sports',               to: '/rules',    color: '#818cf8' },
                 { icon: '🏆', label: 'Teams',    sub: '4 squads',               to: '/teams',    color: '#f59e0b' },
+                { icon: '🏏', label: 'Dream11',  sub: 'IPL Final',              to: '/dream11',  color: '#f97316' },
                 { icon: '⚙️', label: 'Admin',    sub: 'Manage',                 to: '/admin',    color: '#94a3b8' },
               ].map(l => (
                 <button key={l.to} onClick={() => navigate(l.to)}
