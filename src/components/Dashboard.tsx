@@ -1,5 +1,6 @@
 import { useMemo, useEffect, useRef, useState } from 'react';
-import { TrendingUp, Users, Calendar, ArrowRight, Crown, ExternalLink, X } from 'lucide-react';
+import { TrendingUp, Users, Calendar, ArrowRight, Crown, ExternalLink } from 'lucide-react';
+import OrganizerCarousel from './OrganizerCarousel';
 import { useTeams, useSchedule, useDream11 } from '../hooks/useData';
 import { useInView } from '../hooks/useInView';
 
@@ -290,104 +291,6 @@ function TeamScoreCards({ teams }: { teams: TeamWithTotal[] }) {
   );
 }
 
-
-/* ── Organiser FAB ── */
-const ORGANISER = {
-  name: 'Organiser Name',
-  role: 'Event Organiser',
-  initials: 'ON',
-  quotes: [
-    'Every champion was once a contender who refused to give up.',
-    'This tournament is about more than winning — it\'s about heart.',
-    'Compete hard, play fair, and leave everything on the field.',
-  ],
-};
-
-function OrganizerFAB() {
-  const [open, setOpen] = useState(false);
-  const [qIdx, setQIdx] = useState(0);
-
-  return (
-    <>
-      {/* Floating button */}
-      <button
-        onClick={() => setOpen(true)}
-        className="fixed bottom-6 right-6 z-40 h-14 w-14 rounded-full shadow-2xl flex items-center justify-center text-lg font-black transition-transform hover:scale-110 active:scale-95"
-        style={{ background: 'var(--accent)', color: '#fff', boxShadow: '0 8px 32px rgba(0,0,0,0.35)' }}
-        title="Meet the Organiser"
-      >
-        {ORGANISER.initials}
-      </button>
-
-      {/* Backdrop */}
-      {open && (
-        <div
-          className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-4"
-          style={{ background: 'rgba(0,0,0,0.6)', backdropFilter: 'blur(4px)' }}
-          onClick={() => setOpen(false)}
-        >
-          {/* Card */}
-          <div
-            className="relative w-full max-w-sm rounded-3xl p-6 space-y-5"
-            style={{ background: 'var(--bg-surface)', border: '1px solid var(--border)' }}
-            onClick={e => e.stopPropagation()}
-          >
-            {/* Close */}
-            <button
-              onClick={() => setOpen(false)}
-              className="absolute top-4 right-4 h-7 w-7 flex items-center justify-center rounded-full hover:bg-white/10 transition-colors"
-              style={{ color: 'var(--text-muted)' }}
-            >
-              <X className="h-4 w-4" />
-            </button>
-
-            {/* Avatar + name */}
-            <div className="flex items-center gap-4">
-              <div
-                className="h-16 w-16 rounded-2xl flex items-center justify-center text-2xl font-black shrink-0"
-                style={{ background: 'var(--accent)', color: '#fff' }}
-              >
-                {ORGANISER.initials}
-              </div>
-              <div>
-                <div className="font-black text-lg leading-tight" style={{ color: 'var(--text-primary)' }}>
-                  {ORGANISER.name}
-                </div>
-                <div className="text-xs mt-0.5 uppercase tracking-widest" style={{ color: 'var(--text-muted)' }}>
-                  {ORGANISER.role}
-                </div>
-              </div>
-            </div>
-
-            {/* Quote */}
-            <div className="rounded-2xl p-4" style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid var(--border)' }}>
-              <div className="text-xs uppercase tracking-widest mb-2" style={{ color: 'var(--text-muted)' }}>Words from the organiser</div>
-              <p className="text-sm leading-6" style={{ color: 'var(--text-secondary)' }}>
-                "{ORGANISER.quotes[qIdx]}"
-              </p>
-            </div>
-
-            {/* Quote dots */}
-            <div className="flex items-center justify-center gap-1.5">
-              {ORGANISER.quotes.map((_, i) => (
-                <button
-                  key={i}
-                  onClick={() => setQIdx(i)}
-                  className="rounded-full transition-all"
-                  style={{
-                    width: i === qIdx ? 20 : 6, height: 6,
-                    background: i === qIdx ? 'var(--accent)' : 'var(--border)',
-                  }}
-                />
-              ))}
-            </div>
-          </div>
-        </div>
-      )}
-    </>
-  );
-}
-
 /* ── Sport tiles (clickable → rules/:gameId) ── */
 const SPORTS = [
   { id: 'running',   name: 'Running',   icon: '🏃', color: '#f97316', desc: 'Sprint & Relay' },
@@ -607,8 +510,8 @@ export default function Dashboard() {
       {/* Sport tiles — rules */}
       <SportTiles />
 
-      {/* Organiser FAB */}
-      <OrganizerFAB />
+      {/* Organiser carousel FAB */}
+      <OrganizerCarousel />
     </div>
   );
 }
