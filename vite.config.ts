@@ -4,7 +4,7 @@ import react from '@vitejs/plugin-react';
 // Set VITE_BASE to your GitHub Pages repo name, e.g. "/playvista/"
 // Leave empty or "/" for a user/org site (username.github.io).
 export default defineConfig(({ mode }) => ({
-  base: mode === 'production' ? '/playvista/' : '/',
+  base: mode === 'production' ? '/team/' : '/',
   plugins: [react()],
   server: {
     headers: {
