@@ -1,37 +1,26 @@
+import { useNavigate } from 'react-router-dom';
+
 export default function Badminton() {
+  const navigate = useNavigate();
   return (
-    <div className="space-y-6">
-      <div className="rounded-2xl p-8 text-center"
-        style={{ background: 'var(--bg-surface)', border: '1px solid var(--border)' }}>
-        <div className="text-5xl mb-4">🏸</div>
-        <h2 className="text-2xl font-bold mb-2" style={{ color: 'var(--text-primary)' }}>
-          Badminton
-        </h2>
-        <p className="text-sm" style={{ color: 'var(--text-secondary)' }}>
-          Badminton contest coming soon
-        </p>
+    <div className="space-y-4">
+      <div className="flex items-center gap-3">
+        <button onClick={() => navigate('/')}
+          className="h-8 w-8 rounded-xl flex items-center justify-center hover:bg-white/10 transition-colors"
+          style={{ color: 'var(--text-muted)' }}>←</button>
+        <div className="h-10 w-10 rounded-xl flex items-center justify-center text-2xl"
+          style={{ background: 'rgba(255,255,255,0.08)' }}>🏸</div>
+        <div>
+          <h1 className="text-xl font-black leading-none" style={{ color: 'var(--text-primary)' }}>Badminton</h1>
+          <p className="text-xs mt-0.5" style={{ color: 'var(--text-muted)' }}>Singles & Doubles</p>
+        </div>
       </div>
 
-      <div className="rounded-2xl p-6 pv-surface">
-        <div className="text-sm font-bold mb-4" style={{ color: 'var(--text-primary)' }}>
-          📋 Points System
-        </div>
-        <div className="space-y-3">
-          {[
-            { action: 'Win', points: 10 },
-            { action: 'Runner-up', points: 6 },
-            { action: 'Participation', points: 2 },
-          ].map((item, i) => (
-            <div key={i} className="flex justify-between text-sm"
-              style={{ paddingBottom: '12px', borderBottom: i < 2 ? '1px solid var(--border)' : 'none' }}>
-              <span style={{ color: 'var(--text-secondary)' }}>{item.action}</span>
-              <span className="font-bold rounded px-2 py-0.5 text-xs"
-                style={{ color: 'var(--accent)', background: 'var(--accent-bg)' }}>
-                +{item.points}
-              </span>
-            </div>
-          ))}
-        </div>
+      <div className="rounded-2xl p-10 flex flex-col items-center gap-3 text-center"
+        style={{ background: 'var(--bg-surface)', border: '1px solid var(--border)' }}>
+        <div className="text-4xl">🚧</div>
+        <p className="text-sm font-bold" style={{ color: 'var(--text-primary)' }}>Fixtures coming soon</p>
+        <p className="text-xs" style={{ color: 'var(--text-muted)' }}>Check back closer to the event date</p>
       </div>
     </div>
   );

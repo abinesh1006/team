@@ -7,6 +7,8 @@ import TeamLeaderboard from '../components/TeamLeaderboard';
 import Admin from '../components/Admin';
 import IntroScreen, { useIntroSeen } from '../components/IntroScreen';
 import Chess from '../components/games/Chess';
+import Carrom from '../components/games/Carrom';
+import Badminton from '../components/games/Badminton';
 
 export default function AppRoutes() {
   const alreadySeen = useIntroSeen();
@@ -24,6 +26,8 @@ export default function AppRoutes() {
           <Route path="teams" element={<TeamLeaderboard />} />
           <Route path="admin" element={<Admin />} />
           <Route path="chess" element={<Chess />} />
+          <Route path="carrom" element={<Carrom />} />
+          <Route path="badminton" element={<Badminton />} />
         </Route>
       </Routes>
     </>

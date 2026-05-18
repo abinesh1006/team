@@ -12,10 +12,6 @@ interface Fixture {
   winner: string; result: string;
 }
 
-const TEAM_COLORS: Record<string, string> = {
-  'team-alpha': '#ef4444', 'team-beta': '#3b82f6',
-  'team-gamma': '#22c55e', 'team-delta': '#f59e0b',
-};
 const TEAM_EMOJI: Record<string, string> = {
   'team-alpha': '🔴', 'team-beta': '🔵',
   'team-gamma': '🟢', 'team-delta': '🟡',
@@ -70,7 +66,7 @@ export default function Chess() {
           className="h-8 w-8 rounded-xl flex items-center justify-center hover:bg-white/10 transition-colors"
           style={{ color: 'var(--text-muted)' }}>←</button>
         <div className="h-10 w-10 rounded-xl flex items-center justify-center text-2xl"
-          style={{ background: '#a78bfa20' }}>♟️</div>
+          style={{ background: 'rgba(255,255,255,0.08)' }}>♟️</div>
         <div>
           <h1 className="text-xl font-black leading-none" style={{ color: 'var(--text-primary)' }}>Chess</h1>
           <p className="text-xs mt-0.5" style={{ color: 'var(--text-muted)' }}>Swiss Rapid · 4 Rounds</p>
@@ -82,7 +78,7 @@ export default function Chess() {
         {(['fixtures', 'rules'] as const).map(t => (
           <button key={t} onClick={() => setTab(t)}
             className="flex-1 rounded-xl py-2 text-xs font-black capitalize transition-all"
-            style={{ background: tab === t ? '#a78bfa' : 'transparent', color: tab === t ? '#fff' : 'var(--text-muted)' }}>
+            style={{ background: tab === t ? 'rgba(255,255,255,0.12)' : 'transparent', color: tab === t ? 'var(--text-primary)' : 'var(--text-muted)' }}>
             {t === 'fixtures' ? '📅 Fixtures' : '📋 Rules'}
           </button>
         ))}
@@ -96,21 +92,17 @@ export default function Chess() {
           )}
           {rounds.map(([label, matches]) => (
             <div key={label}>
-              <div className="text-xs font-black uppercase tracking-widest mb-2 px-1" style={{ color: '#a78bfa' }}>{label}</div>
+              <div className="text-xs font-black uppercase tracking-widest mb-2 px-1" style={{ color: 'var(--text-muted)' }}>{label}</div>
               <div className="space-y-2">
                 {matches.map(m => {
                   const isDone = !!m.winner;
-                  const c1 = TEAM_COLORS[m.team1] ?? '#666';
-                  const c2 = TEAM_COLORS[m.team2] ?? '#666';
                   return (
                     <div key={m.id} className="rounded-2xl overflow-hidden"
                       style={{ background: 'var(--bg-surface)', border: '1px solid var(--border)' }}>
-                      {/* top color bar */}
-                      <div className="h-0.5" style={{ background: `linear-gradient(90deg, ${c1}, ${c2})` }} />
                       <div className="px-4 py-3">
                         <div className="flex items-center gap-2 mb-2">
                           <span className="text-[10px] font-bold rounded-full px-2 py-0.5"
-                            style={{ background: isDone ? '#22c55e20' : '#f59e0b20', color: isDone ? '#22c55e' : '#f59e0b' }}>
+                            style={{ background: isDone ? 'rgba(255,255,255,0.08)' : 'rgba(255,255,255,0.05)', color: isDone ? 'var(--text-primary)' : 'var(--text-muted)' }}>
                             {isDone ? '✓ Done' : `${m.date} · ${m.time}`}
                           </span>
                         </div>
@@ -120,7 +112,7 @@ export default function Chess() {
                             <div className="flex items-center gap-1.5">
                               <span>{TEAM_EMOJI[m.team1] ?? '🏆'}</span>
                               <span className="text-sm font-black truncate"
-                                style={{ color: m.winner === 'player1' ? c1 : 'var(--text-primary)' }}>
+                                style={{ color: m.winner === 'player1' ? 'var(--text-primary)' : 'var(--text-secondary)', fontWeight: m.winner === 'player1' ? 900 : 600 }}>
                                 {m.player1}
                               </span>
                             </div>
@@ -137,7 +129,7 @@ export default function Chess() {
                           <div className="flex-1 min-w-0 text-right">
                             <div className="flex items-center gap-1.5 justify-end">
                               <span className="text-sm font-black truncate"
-                                style={{ color: m.winner === 'player2' ? c2 : 'var(--text-primary)' }}>
+                                style={{ color: m.winner === 'player2' ? 'var(--text-primary)' : 'var(--text-secondary)', fontWeight: m.winner === 'player2' ? 900 : 600 }}>
                                 {m.player2}
                               </span>
                               <span>{TEAM_EMOJI[m.team2] ?? '🏆'}</span>
@@ -161,23 +153,23 @@ export default function Chess() {
       {tab === 'rules' && game && (
         <div className="space-y-3">
           <div className="rounded-2xl p-4" style={{ background: 'var(--bg-surface)', border: '1px solid var(--border)' }}>
-            <div className="text-xs font-black uppercase tracking-widest mb-3" style={{ color: '#a78bfa' }}>Points System</div>
+            <div className="text-xs font-black uppercase tracking-widest mb-3" style={{ color: 'var(--text-muted)' }}>Points System</div>
             <div className="space-y-2">
               {game.pointsSystem.individual?.map((p, i) => (
                 <div key={i} className="flex items-center justify-between py-1.5 border-b last:border-0" style={{ borderColor: 'var(--border)' }}>
                   <span className="text-sm" style={{ color: 'var(--text-secondary)' }}>{p.position}</span>
                   <span className="text-sm font-black px-2 py-0.5 rounded-lg"
-                    style={{ background: '#a78bfa20', color: '#a78bfa' }}>+{p.points}</span>
+                    style={{ background: 'rgba(255,255,255,0.08)', color: 'var(--text-primary)' }}>+{p.points}</span>
                 </div>
               ))}
             </div>
           </div>
           <div className="rounded-2xl p-4" style={{ background: 'var(--bg-surface)', border: '1px solid var(--border)' }}>
-            <div className="text-xs font-black uppercase tracking-widest mb-3" style={{ color: '#a78bfa' }}>Rules</div>
+            <div className="text-xs font-black uppercase tracking-widest mb-3" style={{ color: 'var(--text-muted)' }}>Rules</div>
             <ol className="space-y-2">
               {game.rules.map((r, i) => (
                 <li key={i} className="flex gap-2.5 text-sm" style={{ color: 'var(--text-secondary)' }}>
-                  <span className="font-black flex-shrink-0" style={{ color: '#a78bfa' }}>{i + 1}.</span>
+                  <span className="font-black flex-shrink-0" style={{ color: 'var(--text-muted)' }}>{i + 1}.</span>
                   {r}
                 </li>
               ))}

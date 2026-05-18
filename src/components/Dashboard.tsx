@@ -1,8 +1,8 @@
 import { useMemo, useEffect, useRef, useState } from 'react';
-import { TrendingUp, Users, Calendar, ArrowRight, Crown, ExternalLink } from 'lucide-react';
-import { useTeams, useSchedule, useQuotes, useDream11 } from '../hooks/useData';
+import { TrendingUp, Users, Calendar, ArrowRight, Crown, ExternalLink, X } from 'lucide-react';
+import { useTeams, useSchedule, useDream11 } from '../hooks/useData';
 import { useInView } from '../hooks/useInView';
-import DailyQuote from './DailyQuote';
+
 import { useNavigate } from 'react-router-dom';
 import type { PlayerWithTeam, TeamWithTotal } from '../types';
 
@@ -118,11 +118,17 @@ function Hero({ teams, totalPts, playerCount, upcomingCount, nextEvent }: {
 
   return (
     <div className="relative overflow-hidden rounded-3xl"
-      style={{ background: 'linear-gradient(135deg,#111 0%,#1a1a1a 50%,#0d0d0d 100%)' }}>
+      style={{ background: 'linear-gradient(135deg,#0f172a 0%,#1a1040 45%,#0d1f35 100%)' }}>
 
       {/* Grid texture */}
-      <div className="pointer-events-none absolute inset-0 opacity-30"
-        style={{ backgroundImage: 'linear-gradient(rgba(255,255,255,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.03) 1px,transparent 1px)', backgroundSize: '48px 48px' }} />
+      <div className="pointer-events-none absolute inset-0 opacity-40"
+        style={{ backgroundImage: 'linear-gradient(rgba(255,255,255,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.04) 1px,transparent 1px)', backgroundSize: '48px 48px' }} />
+
+      {/* Glow blobs */}
+      <div className="pointer-events-none absolute top-0 right-1/3 h-64 w-64 -translate-y-1/2 rounded-full blur-3xl opacity-25"
+        style={{ background: 'radial-gradient(circle,#f59e0b,transparent 70%)' }} />
+      <div className="pointer-events-none absolute bottom-0 left-0 h-48 w-48 translate-y-1/2 rounded-full blur-3xl opacity-15"
+        style={{ background: 'radial-gradient(circle,#6366f1,transparent 70%)' }} />
 
       <div className="relative grid lg:grid-cols-2 gap-0">
 
@@ -131,15 +137,15 @@ function Hero({ teams, totalPts, playerCount, upcomingCount, nextEvent }: {
 
           {/* Live badge */}
           <div className="mb-4" style={anim(0)}>
-            <span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/8 px-3 py-1 text-xs font-bold text-white/70">
-              <span className="h-1.5 w-1.5 rounded-full bg-white/70 animate-pulse inline-block" />
+            <span className="inline-flex items-center gap-2 rounded-full border border-amber-400/30 bg-amber-400/10 px-3 py-1 text-xs font-bold text-amber-400">
+              <span className="h-1.5 w-1.5 rounded-full bg-amber-400 animate-pulse inline-block" />
               LIVE TOURNAMENT
             </span>
           </div>
 
           {/* Title */}
-          <h1 className="mb-1 font-black leading-none text-white" style={{ fontSize: 'clamp(2.2rem,5vw,3.8rem)', ...anim(80) }}>
-            Play<span className="text-white/50">Vista</span>
+          <h1 className="mb-1 font-black leading-none" style={{ fontSize: 'clamp(2.2rem,5vw,3.8rem)', ...anim(80) }}>
+            Play<span style={{ color: '#f59e0b' }}>Vista</span>
           </h1>
           <p className="mb-8 text-sm text-slate-400 max-w-xs" style={anim(150)}>
             4 teams · 5 events · one champion
@@ -148,16 +154,16 @@ function Hero({ teams, totalPts, playerCount, upcomingCount, nextEvent }: {
           {/* Stat trio */}
           <div className="grid grid-cols-3 gap-3 mb-6" style={anim(220)}>
             {[
-              { label: 'Points',  to: totalPts,      icon: TrendingUp },
-              { label: 'Players', to: playerCount,   icon: Users      },
-              { label: 'Events',  to: upcomingCount, icon: Calendar   },
+              { label: 'Points',  to: totalPts,      color: '#f59e0b', icon: TrendingUp },
+              { label: 'Players', to: playerCount,   color: '#818cf8', icon: Users      },
+              { label: 'Events',  to: upcomingCount, color: '#34d399', icon: Calendar   },
             ].map(s => (
-              <div key={s.label} className="rounded-2xl border border-white/10 bg-white/5 p-3 text-center">
-                <s.icon className="h-4 w-4 mx-auto mb-1 text-white/40" />
-                <div className="text-xl font-black tabular-nums text-white">
+              <div key={s.label} className="rounded-2xl border border-white/8 bg-white/5 p-3 text-center">
+                <s.icon className="h-4 w-4 mx-auto mb-1" style={{ color: s.color }} />
+                <div className="text-xl font-black tabular-nums" style={{ color: s.color }}>
                   <Counter to={s.to} started={ready} />
                 </div>
-                <div className="text-xs text-white/30">{s.label}</div>
+                <div className="text-xs text-slate-500">{s.label}</div>
               </div>
             ))}
           </div>
@@ -167,12 +173,12 @@ function Hero({ teams, totalPts, playerCount, upcomingCount, nextEvent }: {
             <div className="inline-flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 px-4 py-3" style={anim(300)}>
               <span className="text-xl animate-float">{nIcon}</span>
               <div className="flex-1 min-w-0">
-                <div className="text-xs text-white/30">Next Up</div>
-                <div className="text-sm font-bold text-white truncate">{nextEvent.game}</div>
+                <div className="text-xs text-slate-500">Next Up</div>
+                <div className="text-sm font-bold truncate">{nextEvent.game}</div>
               </div>
               <div className="flex gap-2 text-center shrink-0">
-                <div><div className="text-base font-black text-white">{nDays}</div><div className="text-xs text-white/30">d</div></div>
-                <div><div className="text-base font-black text-white">{nHrs}</div><div className="text-xs text-white/30">h</div></div>
+                <div><div className="text-base font-black text-amber-400">{nDays}</div><div className="text-xs text-slate-500">d</div></div>
+                <div><div className="text-base font-black text-amber-400">{nHrs}</div><div className="text-xs text-slate-500">h</div></div>
               </div>
             </div>
           )}
@@ -198,17 +204,18 @@ function Hero({ teams, totalPts, playerCount, upcomingCount, nextEvent }: {
                   {/* Team emoji avatar */}
                   <div className="flex h-10 w-10 items-center justify-center rounded-full text-xl"
                     style={{
-                      backgroundColor: 'rgba(255,255,255,0.08)',
-                      border: `2px solid rgba(255,255,255,${isCenter ? 0.4 : 0.15})`,
+                      backgroundColor: `${t.color}30`,
+                      border: `2px solid ${t.color}70`,
+                      boxShadow: isCenter ? `0 0 20px ${t.color}50` : 'none',
                     }}>
                     {t.emoji}
                   </div>
 
                   <div className="text-center">
-                    <div className={`font-bold leading-tight text-white ${isCenter ? 'text-sm' : 'text-xs'} truncate max-w-[120px]`}>
+                    <div className={`font-bold leading-tight ${isCenter ? 'text-sm' : 'text-xs'} truncate max-w-[120px]`}>
                       {t.name.replace('Team ', '')}
                     </div>
-                    <div className="text-xs text-white/30 truncate">{t.players.length}p</div>
+                    <div className="text-xs text-slate-500 truncate">{t.players.length}p</div>
                   </div>
                 </div>
 
@@ -217,19 +224,21 @@ function Hero({ teams, totalPts, playerCount, upcomingCount, nextEvent }: {
                   className="w-full rounded-t-2xl flex flex-col items-center justify-center gap-0.5 relative overflow-hidden"
                   style={{
                     height,
-                    background: isCenter ? 'rgba(255,255,255,0.10)' : 'rgba(255,255,255,0.05)',
-                    borderTop: `2px solid rgba(255,255,255,${isCenter ? 0.35 : 0.12})`,
+                    background: isCenter
+                      ? `linear-gradient(180deg, ${t.color}35 0%, ${t.color}15 100%)`
+                      : `${t.color}18`,
+                    borderTop: `3px solid ${t.color}`,
                   }}>
 
                   {shine && (
                     <div className="pointer-events-none absolute inset-0"
-                      style={{ background: 'linear-gradient(135deg,rgba(255,255,255,0.06) 0%,transparent 60%)' }} />
+                      style={{ background: 'linear-gradient(135deg,rgba(255,255,255,0.08) 0%,transparent 60%)' }} />
                   )}
 
-                  <div className="text-xl font-black tabular-nums text-white">
+                  <div className="text-xl font-black tabular-nums" style={{ color: t.color }}>
                     {t.totalPoints}
                   </div>
-                  <div className="text-xs font-bold text-white/30">{rank}</div>
+                  <div className="text-xs font-bold text-white/40">{rank}</div>
                 </div>
               </div>
             );
@@ -282,6 +291,103 @@ function TeamScoreCards({ teams }: { teams: TeamWithTotal[] }) {
 }
 
 
+/* ── Organiser FAB ── */
+const ORGANISER = {
+  name: 'Organiser Name',
+  role: 'Event Organiser',
+  initials: 'ON',
+  quotes: [
+    'Every champion was once a contender who refused to give up.',
+    'This tournament is about more than winning — it\'s about heart.',
+    'Compete hard, play fair, and leave everything on the field.',
+  ],
+};
+
+function OrganizerFAB() {
+  const [open, setOpen] = useState(false);
+  const [qIdx, setQIdx] = useState(0);
+
+  return (
+    <>
+      {/* Floating button */}
+      <button
+        onClick={() => setOpen(true)}
+        className="fixed bottom-6 right-6 z-40 h-14 w-14 rounded-full shadow-2xl flex items-center justify-center text-lg font-black transition-transform hover:scale-110 active:scale-95"
+        style={{ background: 'var(--accent)', color: '#fff', boxShadow: '0 8px 32px rgba(0,0,0,0.35)' }}
+        title="Meet the Organiser"
+      >
+        {ORGANISER.initials}
+      </button>
+
+      {/* Backdrop */}
+      {open && (
+        <div
+          className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-4"
+          style={{ background: 'rgba(0,0,0,0.6)', backdropFilter: 'blur(4px)' }}
+          onClick={() => setOpen(false)}
+        >
+          {/* Card */}
+          <div
+            className="relative w-full max-w-sm rounded-3xl p-6 space-y-5"
+            style={{ background: 'var(--bg-surface)', border: '1px solid var(--border)' }}
+            onClick={e => e.stopPropagation()}
+          >
+            {/* Close */}
+            <button
+              onClick={() => setOpen(false)}
+              className="absolute top-4 right-4 h-7 w-7 flex items-center justify-center rounded-full hover:bg-white/10 transition-colors"
+              style={{ color: 'var(--text-muted)' }}
+            >
+              <X className="h-4 w-4" />
+            </button>
+
+            {/* Avatar + name */}
+            <div className="flex items-center gap-4">
+              <div
+                className="h-16 w-16 rounded-2xl flex items-center justify-center text-2xl font-black shrink-0"
+                style={{ background: 'var(--accent)', color: '#fff' }}
+              >
+                {ORGANISER.initials}
+              </div>
+              <div>
+                <div className="font-black text-lg leading-tight" style={{ color: 'var(--text-primary)' }}>
+                  {ORGANISER.name}
+                </div>
+                <div className="text-xs mt-0.5 uppercase tracking-widest" style={{ color: 'var(--text-muted)' }}>
+                  {ORGANISER.role}
+                </div>
+              </div>
+            </div>
+
+            {/* Quote */}
+            <div className="rounded-2xl p-4" style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid var(--border)' }}>
+              <div className="text-xs uppercase tracking-widest mb-2" style={{ color: 'var(--text-muted)' }}>Words from the organiser</div>
+              <p className="text-sm leading-6" style={{ color: 'var(--text-secondary)' }}>
+                "{ORGANISER.quotes[qIdx]}"
+              </p>
+            </div>
+
+            {/* Quote dots */}
+            <div className="flex items-center justify-center gap-1.5">
+              {ORGANISER.quotes.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => setQIdx(i)}
+                  className="rounded-full transition-all"
+                  style={{
+                    width: i === qIdx ? 20 : 6, height: 6,
+                    background: i === qIdx ? 'var(--accent)' : 'var(--border)',
+                  }}
+                />
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
+    </>
+  );
+}
+
 /* ── Sport tiles (clickable → rules/:gameId) ── */
 const SPORTS = [
   { id: 'running',   name: 'Running',   icon: '🏃', color: '#f97316', desc: 'Sprint & Relay' },
@@ -300,7 +406,7 @@ function SportTiles() {
       <div className="grid grid-cols-5 gap-2 sm:gap-3">
         {SPORTS.map((s, i) => (
           <button key={s.id}
-            onClick={() => navigate(s.id === 'chess' || s.id === 'dream11' ? `/${s.id}` : `/rules/${s.id}`)}
+            onClick={() => navigate(`/${s.id}`)}
             className="group flex flex-col items-center gap-2 rounded-2xl border bg-white/5 py-4 px-2 text-center transition-all hover:-translate-y-0.5 hover:shadow-lg active:scale-95"
             style={{
               borderColor: `${s.color}25`,
@@ -343,7 +449,7 @@ const GAMES = [
     color: '#f97316',
     desc: 'Sprint & Relay',
     sub: 'Sprint, relay races',
-    to: '/rules/running',
+    to: '/running',
     badge: null,
   },
   {
@@ -353,7 +459,7 @@ const GAMES = [
     color: '#22c55e',
     desc: 'Singles & Doubles',
     sub: 'Knockout bracket',
-    to: '/rules/badminton',
+    to: '/badminton',
     badge: null,
   },
   {
@@ -363,7 +469,7 @@ const GAMES = [
     color: '#a78bfa',
     desc: 'Swiss Rapid',
     sub: 'Swiss-system rounds',
-    to: '/rules/chess',
+    to: '/chess',
     badge: null,
   },
   {
@@ -373,7 +479,7 @@ const GAMES = [
     color: '#38bdf8',
     desc: 'Doubles',
     sub: 'Team doubles',
-    to: '/rules/carrom',
+    to: '/carrom',
     badge: null,
   },
 ];
@@ -439,7 +545,7 @@ function GamesHub({ upcomingCount }: { upcomingCount: number }) {
 export default function Dashboard() {
   const { data: teams, loading } = useTeams();
   const { data: events } = useSchedule();
-  const { data: quotes } = useQuotes();
+
   const navigate = useNavigate();
 
   const players = useMemo<PlayerWithTeam[]>(() => {
@@ -472,10 +578,7 @@ export default function Dashboard() {
   return (
     <div className="space-y-6">
 
-      {/* 0 — Daily quote (once per day) */}
-      {quotes && <DailyQuote quotes={quotes.daily} />}
-
-      {/* 1 — Hero with podium right there */}
+      {/* Hero with podium */}
       <Hero
         teams={rankedTeams}
         totalPts={totalPts}
@@ -484,10 +587,10 @@ export default function Dashboard() {
         nextEvent={nextEvent}
       />
 
-      {/* 2 — Sport tiles */}
-      <SportTiles />
+      {/* Games Hub */}
+      <GamesHub upcomingCount={upcomingCount} />
 
-      {/* 3 — Team standings */}
+      {/* Team standings */}
       <Reveal>
         <div className="mb-3 flex items-center justify-between">
           <h2 className="font-bold flex items-center gap-2 text-base">
@@ -501,33 +604,11 @@ export default function Dashboard() {
         <TeamScoreCards teams={rankedTeams} />
       </Reveal>
 
-      {/* 4 — Games Hub */}
-      <GamesHub upcomingCount={upcomingCount} />
+      {/* Sport tiles — rules */}
+      <SportTiles />
 
-      {/* 5 — Top scorer spotlight */}
-      {players[0] && (
-        <Reveal>
-          <div className="rounded-2xl border border-amber-400/20 bg-gradient-to-r from-amber-400/10 to-transparent p-5 flex items-center gap-4">
-            <div className="h-14 w-14 shrink-0 flex items-center justify-center rounded-full font-black text-xl animate-pulse-glow"
-              style={{ background: `${players[0].teamColor}25`, color: players[0].teamColor, border: `2px solid ${players[0].teamColor}60` }}>
-              {players[0].name.charAt(0)}
-            </div>
-            <div className="flex-1 min-w-0">
-              <div className="text-xs font-bold uppercase tracking-wider text-amber-400/70 flex items-center gap-1 mb-1">
-                <Crown className="h-3.5 w-3.5" />Top Scorer
-              </div>
-              <div className="font-bold truncate">{players[0].name}</div>
-              <div className="text-xs" style={{ color: players[0].teamColor }}>
-                {players[0].teamEmoji} {players[0].team}
-              </div>
-            </div>
-            <div className="shrink-0 text-right">
-              <div className="text-3xl font-black text-amber-400">{players[0].points}</div>
-              <div className="text-xs text-slate-500">+{players[0].points - (players[1]?.points ?? 0)} lead</div>
-            </div>
-          </div>
-        </Reveal>
-      )}
+      {/* Organiser FAB */}
+      <OrganizerFAB />
     </div>
   );
 }
