@@ -1,0 +1,12 @@
+id,name,role,iplTeam,isCaptain,isViceCaptain
+rcb-1,Virat2 Kohli,bat,RCB,false,false
+rcb-4,Rajat Patidar,bat,RCB,false,false
+rcb-5,Dinesh Karthik,wk,RCB,false,false
+rcb-8,Cameron Green,ar,RCB,false,false
+mi-1,Rohit Sharma,bat,MI,false,false
+mi-3,Suryakumar Yadav,bat,MI,false,false
+mi-4,Hardik Pandya,ar,MI,false,false
+mi-5,Tim David,bat,MI,false,false
+mi-7,Jasprit Bumrah,bowl,MI,false,false
+mi-9,Kumar Kartikeya,bowl,MI,true,false
+mi-11,Shreyas Gopal,bowl,MI,false,true

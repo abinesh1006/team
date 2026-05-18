@@ -1,0 +1,35 @@
+{
+  "intro": [
+    "Precision wins long missions.",
+    "Every mismatch tells a story.",
+    "Tracking signals across the universe.",
+    "Small discrepancies. Massive discoveries.",
+    "Champions are forged before the game begins.",
+    "The scoreboard doesn't lie. Neither does effort.",
+    "One team. One mission....",
+    "Mission success begins with preparation."
+
+  ],
+  "daily": [
+    { "type": "motivation", "text": "The will to win means nothing without the will to prepare." },
+    { "type": "motivation", "text": "Champions keep playing until they get it right." },
+    { "type": "motivation", "text": "Hard work beats talent when talent doesn't work hard." },
+    { "type": "motivation", "text": "Success is not given. It is earned on the track, on the court, on the board." },
+    { "type": "motivation", "text": "Great teams don't just win games — they build legacies." },
+    { "type": "motivation", "text": "Every point you score is a decision you made under pressure." },
+    { "type": "scold", "text": "Last place is a temporary address. Stop making it permanent." },
+    { "type": "scold", "text": "Your rivals are practicing right now. Are you?" },
+    { "type": "scold", "text": "Effort is not optional. Improvement is not accidental." },
+    { "type": "scold", "text": "A team that makes excuses has already decided to lose." },
+    { "type": "scold", "text": "The only thing worse than losing is not giving everything to avoid it." },
+    { "type": "scold", "text": "Complacency is the enemy of every championship." },
+    { "type": "motivation", "text": "Today's discipline is tomorrow's dominance." },
+    { "type": "motivation", "text": "The score reflects what you put in — every single time." },
+    { "type": "motivation", "text": "Four teams enter. Only one can rise. Make sure it's yours." },
+    { "type": "scold", "text": "Stop waiting for a perfect moment. This is it." },
+    { "type": "motivation", "text": "Pressure is a privilege — only the best feel it." },
+    { "type": "scold", "text": "There are no shortcuts. The leaderboard knows the truth." },
+    { "type": "motivation", "text": "Small edges compound into big victories." },
+    { "type": "scold", "text": "Your team is counting on you. Do not be the reason they fall short." }
+  ]
+}

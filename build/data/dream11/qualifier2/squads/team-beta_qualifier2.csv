@@ -1,0 +1,12 @@
+id,name,role,iplTeam,isCaptain,isViceCaptain
+csk-1,MS Dhoni,wk,CSK,false,false
+csk-2,Ruturaj Gaikwad,bat,CSK,true,false
+csk-3,Devon Conway,bat,CSK,false,false
+gt-1,Shubman Gill,bat,GT,false,false
+csk-5,Ambati Rayudu,bat,CSK,false,false
+csk-4,Moeen Ali,ar,CSK,false,false
+gt-3,Hardik Pandya,ar,GT,false,true
+csk-6,Ravindra Jadeja,ar,CSK,false,false
+gt-7,Mohammed Shami,bowl,GT,false,false
+csk-9,Matheesha Pathirana,bowl,CSK,false,false
+gt-10,Noor Ahmad,bowl,GT,false,false

@@ -1,0 +1,44 @@
+{
+  "rounds": [
+    {
+      "round": 1,
+      "label": "Round 1",
+      "matches": [
+        { "id": "c1-r1-1", "player1": "Abinesh Subramani", "team1": "team-alpha", "player2": "Rahul Mehta", "team2": "team-gamma", "date": "2026-05-24", "time": "10:00", "result": null, "winner": null },
+        { "id": "c1-r1-2", "player1": "Vikram Singh", "team1": "team-beta", "player2": "Nitin Bansal", "team2": "team-delta", "date": "2026-05-24", "time": "10:00", "result": null, "winner": null },
+        { "id": "c1-r1-3", "player1": "Priya Nair", "team1": "team-alpha", "player2": "Sunita Chauhan", "team2": "team-gamma", "date": "2026-05-24", "time": "10:30", "result": null, "winner": null },
+        { "id": "c1-r1-4", "player1": "Anita Reddy", "team1": "team-beta", "player2": "Swati Agarwal", "team2": "team-delta", "date": "2026-05-24", "time": "10:30", "result": null, "winner": null }
+      ]
+    },
+    {
+      "round": 2,
+      "label": "Round 2",
+      "matches": [
+        { "id": "c1-r2-1", "player1": "Abinesh Subramani", "team1": "team-alpha", "player2": "Nitin Bansal", "team2": "team-delta", "date": "2026-05-24", "time": "11:30", "result": null, "winner": null },
+        { "id": "c1-r2-2", "player1": "Rahul Mehta", "team1": "team-gamma", "player2": "Vikram Singh", "team2": "team-beta", "date": "2026-05-24", "time": "11:30", "result": null, "winner": null },
+        { "id": "c1-r2-3", "player1": "Priya Nair", "team1": "team-alpha", "player2": "Swati Agarwal", "team2": "team-delta", "date": "2026-05-24", "time": "12:00", "result": null, "winner": null },
+        { "id": "c1-r2-4", "player1": "Sunita Chauhan", "team1": "team-gamma", "player2": "Anita Reddy", "team2": "team-beta", "date": "2026-05-24", "time": "12:00", "result": null, "winner": null }
+      ]
+    },
+    {
+      "round": 3,
+      "label": "Round 3",
+      "matches": [
+        { "id": "c1-r3-1", "player1": "Abinesh Subramani", "team1": "team-alpha", "player2": "Vikram Singh", "team2": "team-beta", "date": "2026-05-25", "time": "10:00", "result": null, "winner": null },
+        { "id": "c1-r3-2", "player1": "Nitin Bansal", "team1": "team-delta", "player2": "Rahul Mehta", "team2": "team-gamma", "date": "2026-05-25", "time": "10:00", "result": null, "winner": null },
+        { "id": "c1-r3-3", "player1": "Priya Nair", "team1": "team-alpha", "player2": "Anita Reddy", "team2": "team-beta", "date": "2026-05-25", "time": "10:30", "result": null, "winner": null },
+        { "id": "c1-r3-4", "player1": "Swati Agarwal", "team1": "team-delta", "player2": "Sunita Chauhan", "team2": "team-gamma", "date": "2026-05-25", "time": "10:30", "result": null, "winner": null }
+      ]
+    },
+    {
+      "round": 4,
+      "label": "Round 4",
+      "matches": [
+        { "id": "c1-r4-1", "player1": "Abinesh Subramani", "team1": "team-alpha", "player2": "Swati Agarwal", "team2": "team-delta", "date": "2026-05-25", "time": "14:00", "result": null, "winner": null },
+        { "id": "c1-r4-2", "player1": "Rahul Mehta", "team1": "team-gamma", "player2": "Anita Reddy", "team2": "team-beta", "date": "2026-05-25", "time": "14:00", "result": null, "winner": null },
+        { "id": "c1-r4-3", "player1": "Priya Nair", "team1": "team-alpha", "player2": "Nitin Bansal", "team2": "team-delta", "date": "2026-05-25", "time": "14:30", "result": null, "winner": null },
+        { "id": "c1-r4-4", "player1": "Vikram Singh", "team1": "team-beta", "player2": "Sunita Chauhan", "team2": "team-gamma", "date": "2026-05-25", "time": "14:30", "result": null, "winner": null }
+      ]
+    }
+  ]
+}

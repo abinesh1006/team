@@ -1,0 +1,35 @@
+{
+  "rounds": [
+    {
+      "round": 1,
+      "label": "Round Robin – Group A",
+      "matches": [
+        { "id": "cr-r1-1", "player1": "Abinesh Subramani & Priya Nair", "team1": "team-alpha", "player2": "Rahul Mehta & Sunita Chauhan", "team2": "team-gamma", "date": "2026-05-24", "time": "13:00", "result": null, "winner": null },
+        { "id": "cr-r1-2", "player1": "Vikram Singh & Anita Reddy", "team1": "team-beta", "player2": "Nitin Bansal & Swati Agarwal", "team2": "team-delta", "date": "2026-05-24", "time": "13:00", "result": null, "winner": null }
+      ]
+    },
+    {
+      "round": 2,
+      "label": "Round Robin – Group B",
+      "matches": [
+        { "id": "cr-r2-1", "player1": "Abinesh Subramani & Priya Nair", "team1": "team-alpha", "player2": "Nitin Bansal & Swati Agarwal", "team2": "team-delta", "date": "2026-05-24", "time": "14:00", "result": null, "winner": null },
+        { "id": "cr-r2-2", "player1": "Rahul Mehta & Sunita Chauhan", "team1": "team-gamma", "player2": "Vikram Singh & Anita Reddy", "team2": "team-beta", "date": "2026-05-24", "time": "14:00", "result": null, "winner": null }
+      ]
+    },
+    {
+      "round": 3,
+      "label": "Semifinals",
+      "matches": [
+        { "id": "cr-r3-1", "player1": "TBD", "team1": null, "player2": "TBD", "team2": null, "date": "2026-05-25", "time": "15:00", "result": null, "winner": null },
+        { "id": "cr-r3-2", "player1": "TBD", "team1": null, "player2": "TBD", "team2": null, "date": "2026-05-25", "time": "15:00", "result": null, "winner": null }
+      ]
+    },
+    {
+      "round": 4,
+      "label": "Final",
+      "matches": [
+        { "id": "cr-r4-1", "player1": "TBD", "team1": null, "player2": "TBD", "team2": null, "date": "2026-05-25", "time": "17:00", "result": null, "winner": null }
+      ]
+    }
+  ]
+}
