@@ -3,7 +3,7 @@ import { UserProvider } from './context/UserContext';
 import type { User } from './context/UserContext';
 
 const currentUser: User = {
-  name: 'Abinesh',
+  name: 'Abinesh Subramani',
   email: 'abineshsiva191@gmail.com',
   team: 'team-alpha',
 };

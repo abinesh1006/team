@@ -145,6 +145,97 @@ export function useCricketPlayers(csvPath: string) {
   return { data, loading, error };
 }
 
+export interface SquadCSVRow {
+  id: string;
+  name: string;
+  role: string;
+  iplTeam: string;
+  isCaptain: boolean;
+  isViceCaptain: boolean;
+}
+
+export function useAllSquadCSVs(roundId: string, teamIds: string[]) {
+  const [data, setData] = useState<Record<string, SquadCSVRow[]>>({});
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    if (!roundId || teamIds.length === 0) { setLoading(false); return; }
+    setLoading(true);
+    Promise.all(
+      teamIds.map(teamId => {
+        const path = `${BASE}data/dream11/${roundId}/squads/${teamId}_${roundId}.csv`;
+        return fetch(path, { cache: 'no-store' })
+          .then(r => {
+            const ct = r.headers.get('content-type') ?? '';
+            if (!r.ok || ct.includes('text/html')) throw new Error('not found');
+            return r.text();
+          })
+          .then(text => {
+            const [headerLine, ...rows] = text.trim().split('\n');
+            const headers = headerLine.split(',').map(h => h.trim());
+            const parsed = rows.filter(r => r.trim()).map(row => {
+              const vals = row.split(',').map(v => v.trim());
+              const get = (k: string) => vals[headers.indexOf(k)] ?? '';
+              return {
+                id: get('id'), name: get('name'), role: get('role'),
+                iplTeam: get('iplTeam'),
+                isCaptain: get('isCaptain') === 'true',
+                isViceCaptain: get('isViceCaptain') === 'true',
+              };
+            });
+            return { teamId, rows: parsed };
+          })
+          .catch(() => ({ teamId, rows: [] as SquadCSVRow[] }));
+      })
+    ).then(results => {
+      const map: Record<string, SquadCSVRow[]> = {};
+      for (const { teamId, rows } of results) if (rows.length > 0) map[teamId] = rows;
+      setData(map);
+      setLoading(false);
+    });
+  }, [roundId, teamIds.join(',')]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  return { data, loading };
+}
+
+export function useSquadCSV(roundId: string, teamId: string) {
+  const [data, setData] = useState<SquadCSVRow[] | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    setData(null);
+    setLoading(true);
+    const path = `${BASE}data/dream11/${roundId}/squads/${teamId}_${roundId}.csv`;
+    fetch(path, { cache: 'no-store' })
+      .then(r => {
+        const ct = r.headers.get('content-type') ?? '';
+if (!r.ok || ct.includes('text/html')) throw new Error('not found');
+        return r.text();
+      })
+      .then(text => {
+        const [headerLine, ...rows] = text.trim().split('\n');
+        const headers = headerLine.split(',').map(h => h.trim());
+        const parsed = rows.filter(r => r.trim()).map(row => {
+          const vals = row.split(',').map(v => v.trim());
+          const get = (k: string) => vals[headers.indexOf(k)] ?? '';
+          return {
+            id: get('id'),
+            name: get('name'),
+            role: get('role'),
+            iplTeam: get('iplTeam'),
+            isCaptain: get('isCaptain') === 'true',
+            isViceCaptain: get('isViceCaptain') === 'true',
+          };
+        }).filter(r => r.id !== '');
+        setData(parsed);
+        setLoading(false);
+      })
+      .catch(() => { setData(null); setLoading(false); });
+  }, [roundId, teamId]);
+
+  return { data, loading };
+}
+
 // Kept for Admin compatibility — no-op save since we're JSON-only now
 export const STORAGE_KEYS = {
   teams: '',

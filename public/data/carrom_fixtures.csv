@@ -1,0 +1,10 @@
+id,round,label,player1,team1,player2,team2,date,time,winner,result
+cr-r1-1,1,Round Robin,Abinesh Subramani & Priya Nair,team-alpha,Rahul Mehta & Sunita Chauhan,team-gamma,2026-05-24,13:00,,
+cr-r1-2,1,Round Robin,Vikram Singh & Anita Reddy,team-beta,Nitin Bansal & Swati Agarwal,team-delta,2026-05-24,13:00,,
+cr-r2-1,2,Round Robin,Abinesh Subramani & Priya Nair,team-alpha,Nitin Bansal & Swati Agarwal,team-delta,2026-05-24,14:00,,
+cr-r2-2,2,Round Robin,Rahul Mehta & Sunita Chauhan,team-gamma,Vikram Singh & Anita Reddy,team-beta,2026-05-24,14:00,,
+cr-r3-1,3,Round Robin,Abinesh Subramani & Priya Nair,team-alpha,Vikram Singh & Anita Reddy,team-beta,2026-05-24,15:00,,
+cr-r3-2,3,Round Robin,Rahul Mehta & Sunita Chauhan,team-gamma,Nitin Bansal & Swati Agarwal,team-delta,2026-05-24,15:00,,
+cr-sf-1,4,Semifinal,TBD,,TBD,,2026-05-25,15:00,,
+cr-sf-2,4,Semifinal,TBD,,TBD,,2026-05-25,15:00,,
+cr-f-1,5,Final,TBD,,TBD,,2026-05-25,17:00,,

@@ -130,6 +130,7 @@ export interface Dream11MatchMeta {
   time: string;
   deadline: string | null;
   status: 'upcoming' | 'live' | 'completed';
+  result?: string;
 }
 
 export interface Dream11Round {

@@ -1,0 +1,12 @@
+id,name,role,iplTeam,isCaptain,isViceCaptain
+gt-2,Wriddhiman Saha,wk,GT,false,false
+gt-1,Shubman Gill,bat,GT,true,false
+gt-4,David Miller,bat,GT,false,false
+gt-5,Abhinav Manohar,bat,GT,false,false
+rcb-1,Virat Kohli,bat,RCB,false,false
+gt-3,Hardik Pandya,ar,GT,false,false
+gt-6,Rashid Khan,ar,GT,false,true
+rcb-3,Glenn Maxwell,ar,RCB,false,false
+gt-7,Mohammed Shami,bowl,GT,false,false
+gt-10,Noor Ahmad,bowl,GT,false,false
+rcb-6,Mohammed Siraj,bowl,RCB,false,false

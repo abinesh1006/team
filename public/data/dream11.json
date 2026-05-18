@@ -38,85 +38,93 @@
   },
   "rounds": [
     {
-      "id": "playoffs",
-      "label": "Playoffs",
-      "icon": "🏏",
-      "playersCSV": "data/dream11/playoffs/players.csv",
-      "scoresCSV": "data/dream11/playoffs/scores.csv",
+      "id": "qualifier1",
+      "label": "Qualifier 1",
+      "icon": "⚔️",
+      "playersCSV": "data/dream11/qualifier1/players.csv",
+      "scoresCSV": "data/dream11/qualifier1/scores.csv",
+      "squadsDir": "data/dream11/qualifier1/squads",
       "match": {
-        "matchTitle": "IPL Playoffs 2026",
-        "team1": "TBD",
-        "team2": "TBD",
-        "team1Short": "TBD",
-        "team2Short": "TBD",
-        "team1Color": "#94a3b8",
-        "team2Color": "#94a3b8",
-        "venue": "TBD",
-        "date": "TBD",
-        "time": "TBD",
-        "deadline": null,
+        "matchTitle": "IPL 2026 Qualifier 1",
+        "team1": "Royal Challengers Bengaluru",
+        "team2": "Gujarat Titans",
+        "team1Short": "RCB",
+        "team2Short": "GT",
+        "team1Color": "#C8102E",
+        "team2Color": "#1C1C5B",
+        "venue": "Narendra Modi Stadium, Ahmedabad",
+        "date": "2026-05-24",
+        "time": "19:30",
+        "deadline": "2026-05-24T19:00:00",
         "status": "upcoming"
-      },
-      "playvistaTeamSquads": [
-        { "teamId": "team-alpha", "submittedBy": "Arjun Sharma",  "submittedAt": null, "status": "pending", "squad": [], "captain": null, "viceCaptain": null, "totalFantasyPoints": null },
-        { "teamId": "team-beta",  "submittedBy": "Vikram Singh",  "submittedAt": null, "status": "pending", "squad": [], "captain": null, "viceCaptain": null, "totalFantasyPoints": null },
-        { "teamId": "team-gamma", "submittedBy": "Rahul Mehta",   "submittedAt": null, "status": "pending", "squad": [], "captain": null, "viceCaptain": null, "totalFantasyPoints": null },
-        { "teamId": "team-delta", "submittedBy": "Nitin Bansal",  "submittedAt": null, "status": "pending", "squad": [], "captain": null, "viceCaptain": null, "totalFantasyPoints": null }
-      ]
+      }
+     
     },
     {
-      "id": "semis",
-      "label": "Semifinals",
-      "icon": "⚡",
-      "playersCSV": "data/dream11/semis/players.csv",
-      "scoresCSV": "data/dream11/semis/scores.csv",
+      "id": "eliminator",
+      "label": "Eliminator",
+      "icon": "🔥",
+      "playersCSV": "data/dream11/eliminator/players.csv",
+      "scoresCSV": "data/dream11/eliminator/scores.csv",
+      "squadsDir": "data/dream11/eliminator/squads",
       "match": {
-        "matchTitle": "IPL Semifinals 2026",
-        "team1": "TBD",
-        "team2": "TBD",
-        "team1Short": "TBD",
-        "team2Short": "TBD",
-        "team1Color": "#94a3b8",
-        "team2Color": "#94a3b8",
-        "venue": "TBD",
-        "date": "TBD",
-        "time": "TBD",
-        "deadline": null,
+        "matchTitle": "IPL 2026 Eliminator",
+        "team1": "Chennai Super Kings",
+        "team2": "Sunrisers Hyderabad",
+        "team1Short": "CSK",
+        "team2Short": "SRH",
+        "team1Color": "#F9CD05",
+        "team2Color": "#FF822A",
+        "venue": "MA Chidambaram Stadium, Chennai",
+        "date": "2026-05-25",
+        "time": "19:30",
+        "deadline": "2026-05-25T19:00:00",
         "status": "upcoming"
-      },
-      "playvistaTeamSquads": [
-        { "teamId": "team-alpha", "submittedBy": "Arjun Sharma",  "submittedAt": null, "status": "pending", "squad": [], "captain": null, "viceCaptain": null, "totalFantasyPoints": null },
-        { "teamId": "team-beta",  "submittedBy": "Vikram Singh",  "submittedAt": null, "status": "pending", "squad": [], "captain": null, "viceCaptain": null, "totalFantasyPoints": null },
-        { "teamId": "team-gamma", "submittedBy": "Rahul Mehta",   "submittedAt": null, "status": "pending", "squad": [], "captain": null, "viceCaptain": null, "totalFantasyPoints": null },
-        { "teamId": "team-delta", "submittedBy": "Nitin Bansal",  "submittedAt": null, "status": "pending", "squad": [], "captain": null, "viceCaptain": null, "totalFantasyPoints": null }
-      ]
+      }
+    },
+    {
+      "id": "qualifier2",
+      "label": "Qualifier 2",
+      "icon": "🎯",
+      "playersCSV": "data/dream11/qualifier2/players.csv",
+      "scoresCSV": "data/dream11/qualifier2/scores.csv",
+      "squadsDir": "data/dream11/qualifier2/squads",
+      "match": {
+        "matchTitle": "IPL 2026 Qualifier 2",
+        "team1": "Gujarat Titans",
+        "team2": "Chennai Super Kings",
+        "team1Short": "GT",
+        "team2Short": "CSK",
+        "team1Color": "#1C1C5B",
+        "team2Color": "#F9CD05",
+        "venue": "Eden Gardens, Kolkata",
+        "date": "2026-05-27",
+        "time": "19:30",
+        "deadline": "2026-05-27T19:00:00",
+        "status": "upcoming"
+      }
     },
     {
       "id": "finals",
-      "label": "Finals",
+      "label": "Final",
       "icon": "🏆",
       "playersCSV": "data/dream11/finals/players.csv",
       "scoresCSV": "data/dream11/finals/scores.csv",
+      "squadsDir": "data/dream11/finals/squads",
       "match": {
-        "matchTitle": "IPL Final 2026",
+        "matchTitle": "IPL 2026 Final",
         "team1": "Royal Challengers Bengaluru",
-        "team2": "Mumbai Indians",
+        "team2": "Chennai Super Kings",
         "team1Short": "RCB",
-        "team2Short": "MI",
+        "team2Short": "CSK",
         "team1Color": "#C8102E",
-        "team2Color": "#004BA0",
-        "venue": "Narendra Modi Stadium, Ahmedabad",
-        "date": "2026-05-26",
+        "team2Color": "#F9CD05",
+        "venue": "Wankhede Stadium, Mumbai",
+        "date": "2026-05-30",
         "time": "19:30",
-        "deadline": "2026-05-26T19:00:00",
+        "deadline": "2026-05-30T19:00:00",
         "status": "upcoming"
-      },
-      "playvistaTeamSquads": [
-        { "teamId": "team-alpha", "submittedBy": "Arjun Sharma",  "submittedAt": null, "status": "pending", "squad": [], "captain": null, "viceCaptain": null, "totalFantasyPoints": null },
-        { "teamId": "team-beta",  "submittedBy": "Vikram Singh",  "submittedAt": null, "status": "pending", "squad": [], "captain": null, "viceCaptain": null, "totalFantasyPoints": null },
-        { "teamId": "team-gamma", "submittedBy": "Rahul Mehta",   "submittedAt": null, "status": "pending", "squad": [], "captain": null, "viceCaptain": null, "totalFantasyPoints": null },
-        { "teamId": "team-delta", "submittedBy": "Nitin Bansal",  "submittedAt": null, "status": "pending", "squad": [], "captain": null, "viceCaptain": null, "totalFantasyPoints": null }
-      ]
+      }
     }
   ]
 }

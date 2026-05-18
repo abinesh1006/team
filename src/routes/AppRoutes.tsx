@@ -1,9 +1,12 @@
 import { useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Layout from '../components/Layout';
-import HomePage from '../components/HomePage';
+import Dashboard from '../components/Dashboard';
+import Dream11 from '../components/Dream11';
+import TeamLeaderboard from '../components/TeamLeaderboard';
 import Admin from '../components/Admin';
 import IntroScreen, { useIntroSeen } from '../components/IntroScreen';
+import Chess from '../components/games/Chess';
 
 export default function AppRoutes() {
   const alreadySeen = useIntroSeen();
@@ -16,8 +19,11 @@ export default function AppRoutes() {
       )}
       <Routes>
         <Route path="/" element={<Layout />}>
-          <Route index element={<HomePage />} />
+          <Route index element={<Dashboard />} />
+          <Route path="dream11" element={<Dream11 />} />
+          <Route path="teams" element={<TeamLeaderboard />} />
           <Route path="admin" element={<Admin />} />
+          <Route path="chess" element={<Chess />} />
         </Route>
       </Routes>
     </>

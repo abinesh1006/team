@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
-import { Trophy, Menu, X, Shield, Sun, Moon } from 'lucide-react';
+import { Trophy, Menu, X, Shield, Sun, Moon, Home } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
 
 const NAV = [
+  { to: '/', label: 'Dashboard', icon: Home },
   { to: '/admin', label: 'Admin', icon: Shield },
 ];
 

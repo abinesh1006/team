@@ -1,0 +1,23 @@
+id,name,role,iplTeam,credits,battingOrder,isCaptainOption,runs,avg,sr,wickets,economy
+rcb-1,Virat Kohli,bat,RCB,11.5,1,true,741,61.8,152.4,0,
+rcb-2,Faf du Plessis,bat,RCB,9.5,2,true,620,51.7,145.2,0,
+rcb-3,Glenn Maxwell,ar,RCB,10.0,4,true,480,40.0,168.4,8,8.6
+rcb-4,Rajat Patidar,bat,RCB,8.5,3,false,510,42.5,155.0,0,
+rcb-5,Dinesh Karthik,wk,RCB,8.5,6,false,290,48.3,178.5,0,
+rcb-6,Mohammed Siraj,bowl,RCB,9.0,10,false,30,7.5,90.0,22,7.8
+rcb-7,Yash Dayal,bowl,RCB,7.5,11,false,12,6.0,75.0,18,8.2
+rcb-8,Cameron Green,ar,RCB,9.0,5,true,350,35.0,162.0,10,8.9
+rcb-9,Alzarri Joseph,bowl,RCB,8.0,9,false,20,5.0,80.0,20,8.5
+rcb-10,Will Jacks,ar,RCB,8.0,7,false,310,31.0,158.0,6,9.2
+rcb-11,Lockie Ferguson,bowl,RCB,7.5,8,false,15,5.0,75.0,16,8.8
+gt-1,Shubman Gill,bat,GT,11.0,1,true,810,67.5,148.0,0,
+gt-2,Wriddhiman Saha,wk,GT,8.0,2,false,280,35.0,138.0,0,
+gt-3,Hardik Pandya,ar,GT,10.5,5,true,390,39.0,170.0,14,8.0
+gt-4,David Miller,bat,GT,9.5,4,true,520,52.0,175.0,0,
+gt-5,Abhinav Manohar,bat,GT,8.0,3,false,410,41.0,152.0,0,
+gt-6,Rashid Khan,ar,GT,10.5,7,true,120,20.0,140.0,24,6.5
+gt-7,Mohammed Shami,bowl,GT,10.0,10,true,18,4.5,72.0,26,7.2
+gt-8,Alzarri Joseph,bowl,GT,8.0,11,false,12,4.0,68.0,18,8.4
+gt-9,Vijay Shankar,ar,GT,7.5,6,false,280,28.0,148.0,8,9.1
+gt-10,Noor Ahmad,bowl,GT,8.5,9,false,14,4.7,62.0,20,7.8
+gt-11,Yash Dayal,bowl,GT,7.5,8,false,10,5.0,70.0,15,8.6

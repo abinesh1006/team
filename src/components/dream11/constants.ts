@@ -8,4 +8,4 @@ export const ROLE_FULL: Record<PlayerRole, string> = {
   wk: 'Wicket Keeper', bat: 'Batter', ar: 'All-Rounder', bowl: 'Bowler',
 };
 
-export const STORAGE_KEY = (roundId: string, teamId: string) => `d11_squad_${roundId}_${teamId}`;
+export const STORAGE_KEY = (roundId: string, teamId: string) => `d11_squad_v2_${roundId}_${teamId}`;
