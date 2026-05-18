@@ -1,5 +1,5 @@
 import { useMemo, useEffect, useRef, useState } from 'react';
-import { TrendingUp, Users, Calendar, ArrowRight, Crown, ExternalLink } from 'lucide-react';
+import { TrendingUp, Users, Calendar, ArrowRight, ExternalLink } from 'lucide-react';
 import OrganizerCarousel from './OrganizerCarousel';
 import { useTeams, useSchedule, useDream11 } from '../hooks/useData';
 import { useInView } from '../hooks/useInView';
