@@ -16,12 +16,13 @@ const IPL_TEAM_COLORS: Record<string, string> = {
   GT: '#1C1C5B', LSG: '#A4262C',
 };
 
-export function SquadBuilder({ players, constraints, roundId, teamId, canEdit }: {
+export function SquadBuilder({ players, constraints, roundId, teamId, canEdit, matchStatus }: {
   players: IPLPlayer[];
   constraints: Dream11Constraints;
   roundId: string;
   teamId: string;
   canEdit: boolean | undefined;
+  matchStatus: 'upcoming' | 'live' | 'completed';
 }) {
   const [squad, setSquad] = useState<string[]>([]);
   const [captain, setCaptain] = useState<string | null>(null);
@@ -124,6 +125,46 @@ export function SquadBuilder({ players, constraints, roundId, teamId, canEdit }:
       <div className="text-sm">Loading squad...</div>
     </div>
   );
+
+  /* ── NOT LIVE: submission not allowed ── */
+  if (matchStatus !== 'live') {
+    const isCompleted = matchStatus === 'completed';
+    const bannerBg = isCompleted ? 'rgba(239,68,68,0.07)' : 'rgba(245,158,11,0.07)';
+    const bannerBorder = isCompleted ? 'rgba(239,68,68,0.2)' : 'rgba(245,158,11,0.2)';
+    const icon = isCompleted ? '🔒' : '⏳';
+    const title = isCompleted ? 'Submission closed' : 'Submission not open yet';
+    const subtitle = isCompleted
+      ? 'This match is over. Your squad is locked.'
+      : 'Submissions open once the match goes live.';
+
+    if (isLockedByFile) return (
+      <div className="space-y-3">
+        <div className="flex items-center gap-3 rounded-xl px-4 py-3"
+          style={{ background: bannerBg, border: `1px solid ${bannerBorder}` }}>
+          <span className="text-xl">{icon}</span>
+          <div>
+            <div className="text-sm font-bold" style={{ color: 'var(--text-primary)' }}>{title}</div>
+            <div className="text-xs mt-0.5" style={{ color: 'var(--text-muted)' }}>{subtitle}</div>
+          </div>
+        </div>
+        <GroundView selectedPlayers={selectedPlayers} captain={captain} viceCaptain={viceCaptain} />
+      </div>
+    );
+
+    return (
+      <div className="rounded-2xl flex flex-col items-center justify-center gap-3 py-14 px-6 text-center"
+        style={{ background: 'var(--bg-surface)', border: '1px solid var(--border)' }}>
+        <div className="h-14 w-14 rounded-2xl flex items-center justify-center text-3xl"
+          style={{ background: isCompleted ? 'rgba(239,68,68,0.08)' : 'rgba(245,158,11,0.08)' }}>
+          {icon}
+        </div>
+        <div>
+          <div className="text-base font-black" style={{ color: 'var(--text-primary)' }}>{title}</div>
+          <div className="text-xs mt-1.5 max-w-xs" style={{ color: 'var(--text-muted)' }}>{subtitle}</div>
+        </div>
+      </div>
+    );
+  }
 
   /* ── LOCKED BY SUBMITTED FILE — just show the pitch ── */
   if (isLockedByFile) return (

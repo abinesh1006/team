@@ -139,6 +139,7 @@ export interface Dream11Round {
   icon: string;
   playersCSV: string;
   scoresCSV: string;
+  squadsDir: string;
   match: Dream11MatchMeta;
   playvistaTeamSquads: Dream11TeamSquad[];
 }

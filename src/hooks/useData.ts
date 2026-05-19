@@ -236,6 +236,52 @@ if (!r.ok || ct.includes('text/html')) throw new Error('not found');
   return { data, loading };
 }
 
+export function useAllRoundsSquads(roundIds: string[], teamIds: string[]) {
+  const [data, setData] = useState<Record<string, Record<string, SquadCSVRow[]>>>({});
+
+  useEffect(() => {
+    if (!roundIds.length || !teamIds.length) return;
+    Promise.all(
+      roundIds.flatMap(roundId =>
+        teamIds.map(teamId => {
+          const path = `${BASE}data/dream11/${roundId}/squads/${teamId}_${roundId}.csv`;
+          return fetch(path, { cache: 'no-store' })
+            .then(r => {
+              const ct = r.headers.get('content-type') ?? '';
+              if (!r.ok || ct.includes('text/html')) throw new Error('not found');
+              return r.text();
+            })
+            .then(text => {
+              const [headerLine, ...rows] = text.trim().split('\n');
+              const headers = headerLine.split(',').map(h => h.trim());
+              const parsed = rows.filter(r => r.trim()).map(row => {
+                const vals = row.split(',').map(v => v.trim());
+                const get = (k: string) => vals[headers.indexOf(k)] ?? '';
+                return {
+                  id: get('id'), name: get('name'), role: get('role'),
+                  iplTeam: get('iplTeam'),
+                  isCaptain: get('isCaptain') === 'true',
+                  isViceCaptain: get('isViceCaptain') === 'true',
+                };
+              }).filter(r => r.id !== '');
+              return { roundId, teamId, rows: parsed };
+            })
+            .catch(() => ({ roundId, teamId, rows: [] as SquadCSVRow[] }));
+        })
+      )
+    ).then(results => {
+      const map: Record<string, Record<string, SquadCSVRow[]>> = {};
+      for (const { roundId, teamId, rows } of results) {
+        if (!map[roundId]) map[roundId] = {};
+        if (rows.length > 0) map[roundId][teamId] = rows;
+      }
+      setData(map);
+    });
+  }, [roundIds.join(','), teamIds.join(',')]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  return data;
+}
+
 // Kept for Admin compatibility — no-op save since we're JSON-only now
 export const STORAGE_KEYS = {
   teams: '',

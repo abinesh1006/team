@@ -1,66 +1,61 @@
-import { useMemo, useState, type ReactNode } from 'react';
+import { useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Trophy, Users, Info, Zap, Star } from 'lucide-react';
+import { ChevronLeft } from 'lucide-react';
 import { useDream11, useCricketPlayers, useRoundScores, useTeams, useAllSquadCSVs } from '../hooks/useData';
 import { useUser } from '../context/UserContext';
-import { ScoringReference } from './dream11/ScoringReference';
-import { ContestRules } from './dream11/ContestRules';
-import { FantasyLeaderboard } from './dream11/FantasyLeaderboard';
-import { MatchBanner } from './dream11/MatchBanner';
-import { PerformanceEntry } from './dream11/PerformanceEntry';
 import { RoundTabs } from './dream11/RoundTabs';
+import { MatchBanner } from './dream11/MatchBanner';
 import { SquadBuilder } from './dream11/Builder';
+import { AllSubmissions } from './dream11/AllSubmissions';
+import { Results } from './dream11/Results';
 import { Sk } from './dream11/atoms';
-
-type Tab = 'builder' | 'leaderboard' | 'scoring' | 'rules' | 'scores';
 
 const D11_GREEN = '#1a9e5c';
 
-const TABS: { id: Tab; label: string; icon: ReactNode }[] = [
-  { id: 'builder',     label: 'My Squad',   icon: <Users className="h-4 w-4" /> },
-  { id: 'leaderboard', label: 'Leaderboard', icon: <Trophy className="h-4 w-4" /> },
-  { id: 'scoring',     label: 'Scoring',     icon: <Zap className="h-4 w-4" /> },
-  { id: 'rules',       label: 'Rules',       icon: <Info className="h-4 w-4" /> },
-  { id: 'scores',      label: 'Scores ⚙',   icon: <Star className="h-4 w-4" /> },
+type MainTab = 'myteam' | 'submissions' | 'results';
+
+const MAIN_TABS: { id: MainTab; label: string }[] = [
+  { id: 'myteam',      label: 'My Team'        },
+  { id: 'submissions', label: 'All Submissions' },
+  { id: 'results',     label: 'Results'         },
 ];
 
 export default function Dream11() {
   const navigate = useNavigate();
   const { data, loading: d11Loading, error: d11Error } = useDream11();
   const { data: teamsData } = useTeams();
-  const [activeRound, setActiveRound] = useState<string>('finals');
-  const [tab, setTab] = useState<Tab>('builder');
+  const user = useUser();
+
+  const [mainTab, setMainTab] = useState<MainTab>('submissions');
+  const [activeRound, setActiveRound] = useState<string>('qualifier1');
 
   const round = useMemo(() => data?.rounds.find(r => r.id === activeRound) ?? null, [data, activeRound]);
+
   const playersCsvPath = round?.playersCSV ?? `data/dream11/${activeRound}/players.csv`;
   const { data: players, loading: csvLoading, error: csvError } = useCricketPlayers(playersCsvPath);
   const scoresCsvPath = round?.scoresCSV ?? `data/dream11/${activeRound}/scores.csv`;
   const { data: performances } = useRoundScores(scoresCsvPath);
 
-  const user = useUser();
-  const selectedTeamId = user.team ?? 'team-alpha';
-
-  const canEditTeam = useMemo((): boolean | undefined => {
-    if (!teamsData) return undefined;
-    const team = teamsData.find(t => t.id === selectedTeamId);
-    if (!team) return false;
-    return user.team === selectedTeamId &&
-      (user.name === team.captain || user.name === team.viceCaptain);
-  }, [teamsData, selectedTeamId, user]);
-
   const teamIds = useMemo(() => teamsData?.map(t => t.id) ?? [], [teamsData]);
   const { data: csvSquads } = useAllSquadCSVs(activeRound, teamIds);
+
+  const myTeamId = user.team;
+  const myTeamData = useMemo(() => teamsData?.find(t => t.id === myTeamId), [teamsData, myTeamId]);
+  const canEditTeam = useMemo((): boolean | undefined => {
+    if (!myTeamData) return undefined;
+    return user.name === myTeamData.captain || user.name === myTeamData.viceCaptain;
+  }, [myTeamData, user]);
 
   const enrichedSquads = useMemo(() => {
     if (!teamsData) return [];
     return teamsData.map(team => {
       const csv = csvSquads[team.id];
-      const hasSquad = csv && csv.length >= 11;
+      const hasSquad = csv && csv.filter(r => r.id.trim()).length >= 11;
       return {
         teamId: team.id,
         submittedBy: team.captain,
         submittedAt: hasSquad ? 'submitted' : null,
-        status: hasSquad ? 'submitted' as const : 'pending' as const,
+        status: hasSquad ? ('submitted' as const) : ('pending' as const),
         squad: hasSquad ? csv.map(r => r.id) : [],
         captain: hasSquad ? (csv.find(r => r.isCaptain)?.id ?? null) : null,
         viceCaptain: hasSquad ? (csv.find(r => r.isViceCaptain)?.id ?? null) : null,
@@ -71,12 +66,11 @@ export default function Dream11() {
 
   if (d11Loading || csvLoading) {
     return (
-      <div className="space-y-4">
-        <div className="flex gap-2">{[1,2,3].map(i => <Sk key={i} className="h-14 w-32 rounded-xl" />)}</div>
-        <Sk className="h-36 rounded-2xl" />
-        <Sk className="h-10 rounded-xl" />
-        <div className="grid gap-2 sm:grid-cols-2">
-          {Array.from({ length: 8 }).map((_, i) => <Sk key={i} className="h-20" />)}
+      <div className="space-y-3 pt-2">
+        <div className="flex gap-2">{[1,2,3,4].map(i => <Sk key={i} className="h-10 flex-1 rounded-full" />)}</div>
+        <Sk className="h-24 rounded-2xl" />
+        <div className="space-y-2">
+          {Array.from({ length: 5 }).map((_, i) => <Sk key={i} className="h-16 rounded-2xl" />)}
         </div>
       </div>
     );
@@ -84,89 +78,108 @@ export default function Dream11() {
 
   if (d11Error || csvError || !data || !players) {
     return (
-      <div className="flex min-h-[40vh] items-center justify-center text-center">
-        <div>
-          <div className="text-5xl mb-4">🏏</div>
-          <div className="font-bold text-lg" style={{ color: 'var(--text-primary)' }}>Failed to load Dream11</div>
-          <div className="text-sm mt-1" style={{ color: 'var(--text-muted)' }}>{d11Error ?? csvError}</div>
-        </div>
+      <div className="flex min-h-[50vh] flex-col items-center justify-center gap-3 text-center">
+        <div className="text-4xl">🏏</div>
+        <div className="font-bold" style={{ color: 'var(--text-primary)' }}>Failed to load Dream11</div>
+        <div className="text-sm" style={{ color: 'var(--text-muted)' }}>{d11Error ?? csvError}</div>
       </div>
     );
   }
 
-  return (
-    <div className="space-y-4">
+  const matchStatus = round?.match.status ?? 'upcoming';
 
-      {/* ── page header (Dream11 style: green accent) ── */}
-      <div className="flex items-center justify-between">
-        <div className="flex items-center gap-2.5">
-          <button onClick={() => navigate('/')} className="h-8 w-8 rounded-xl flex items-center justify-center transition-colors hover:bg-white/10" style={{ color: 'var(--text-muted)' }}>
-            ←
+  /* Results tab doesn't need round-specific player/perf data */
+  const showRoundPicker = mainTab !== 'results';
+
+  return (
+    <div className="flex flex-col gap-0">
+
+      {/* ── Header ── */}
+      <div className="flex items-center justify-between px-1 pb-4">
+        <div className="flex items-center gap-2">
+          <button
+            onClick={() => navigate('/')}
+            className="h-8 w-8 rounded-full flex items-center justify-center"
+            style={{ background: 'var(--bg-surface)', color: 'var(--text-secondary)' }}>
+            <ChevronLeft className="h-4 w-4" />
           </button>
-          <div className="h-10 w-10 rounded-xl flex items-center justify-center text-2xl"
-            style={{ background: `${D11_GREEN}20` }}>🏏</div>
           <div>
-            <h1 className="text-xl font-black leading-none" style={{ color: 'var(--text-primary)' }}>
+            <h1 className="text-lg font-black leading-tight" style={{ color: 'var(--text-primary)' }}>
               Dream<span style={{ color: D11_GREEN }}>11</span>
             </h1>
-            <p className="text-xs mt-0.5" style={{ color: 'var(--text-muted)' }}>
-              {players.length} players · Playoffs → Finals
+            <p className="text-[11px] leading-none mt-0.5" style={{ color: 'var(--text-muted)' }}>
+              IPL Playoffs Fantasy
             </p>
           </div>
         </div>
-        <span className="rounded-full px-2.5 py-1 text-[10px] font-black"
-          style={{ background: `${D11_GREEN}22`, color: D11_GREEN }}>
-          FANTASY
-        </span>
+        <div className="rounded-full px-3 py-1.5"
+          style={{ background: `${D11_GREEN}15`, border: `1px solid ${D11_GREEN}30` }}>
+          <span className="text-[10px] font-black tracking-wide" style={{ color: D11_GREEN }}>FANTASY</span>
+        </div>
       </div>
 
-      {/* ── round selector ── */}
-      <RoundTabs
-        rounds={data.rounds}
-        activeId={activeRound}
-        onChange={id => { setActiveRound(id); setTab('builder'); }}
-      />
-
-      {/* ── match banner ── */}
-      {round && <MatchBanner match={round.match} />}
-
-
-      {/* ── tab bar (Dream11-style pill row) ── */}
-      <div className="flex gap-1 overflow-x-auto pb-0.5 scrollbar-none rounded-2xl p-1"
-        style={{ background: 'var(--bg-surface)' }}>
-        {TABS.map(({ id, label, icon }) => (
-          <button key={id} onClick={() => setTab(id)}
-            className="flex-shrink-0 flex items-center gap-1.5 rounded-xl px-3 py-2 text-[11px] font-black transition-all"
-            style={{
-              background: tab === id ? D11_GREEN : 'transparent',
-              color: tab === id ? '#fff' : 'var(--text-muted)',
-            }}>
-            {icon}{label}
-          </button>
-        ))}
+      {/* ── Main tabs — always at top ── */}
+      <div className="flex border-b mb-4" style={{ borderColor: 'var(--border)' }}>
+        {MAIN_TABS.map(({ id, label }) => {
+          const isActive = mainTab === id;
+          return (
+            <button
+              key={id}
+              onClick={() => setMainTab(id)}
+              className="flex-1 py-2.5 text-xs font-bold transition-colors relative"
+              style={{ color: isActive ? D11_GREEN : 'var(--text-muted)' }}>
+              {label}
+              {isActive && (
+                <span className="absolute bottom-0 left-3 right-3 h-[2px] rounded-full"
+                  style={{ background: D11_GREEN }} />
+              )}
+            </button>
+          );
+        })}
       </div>
 
-      {/* ── tab content ── */}
-      {tab === 'builder' && (
+      {/* ── Round picker + match banner — only for My Team & All Submissions ── */}
+      {showRoundPicker && (
+        <div className="space-y-3 mb-4">
+          <RoundTabs
+            rounds={data.rounds}
+            activeId={activeRound}
+            onChange={id => setActiveRound(id)}
+          />
+          {round && <MatchBanner match={round.match} />}
+        </div>
+      )}
+
+      {/* ── Tab content ── */}
+      {mainTab === 'myteam' && (
         <SquadBuilder
           players={players}
           constraints={data.constraints}
           roundId={activeRound}
-          teamId={selectedTeamId}
+          teamId={myTeamId}
           canEdit={canEditTeam}
+          matchStatus={matchStatus}
         />
       )}
-      {tab === 'leaderboard' && (
-        <FantasyLeaderboard
+
+      {mainTab === 'submissions' && (
+        <AllSubmissions
           squads={enrichedSquads}
           players={players}
           performances={performances ?? []}
           teams={teamsData ?? []}
+          myTeamId={myTeamId}
         />
       )}
-      {tab === 'scoring' && <ScoringReference scoring={data.scoring} />}
-      {tab === 'rules' && <ContestRules />}
-      {tab === 'scores' && <PerformanceEntry players={players} />}
+
+      {mainTab === 'results' && (
+        <Results
+          rounds={data.rounds}
+          activeRoundId={activeRound}
+          teams={teamsData ?? []}
+          scoring={data.scoring}
+        />
+      )}
     </div>
   );
 }

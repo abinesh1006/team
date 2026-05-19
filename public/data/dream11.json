@@ -2,38 +2,107 @@
   "constraints": {
     "squadSize": 11,
     "maxFromOneIPLTeam": 7,
-    "wk":   { "min": 1, "max": 1 },
-    "bat":  { "min": 3, "max": 5 },
-    "ar":   { "min": 1, "max": 3 },
-    "bowl": { "min": 3, "max": 5 }
+    "wk": {
+      "min": 1,
+      "max": 1
+    },
+    "bat": {
+      "min": 3,
+      "max": 5
+    },
+    "ar": {
+      "min": 1,
+      "max": 3
+    },
+    "bowl": {
+      "min": 3,
+      "max": 5
+    }
   },
   "scoring": {
     "batting": [
-      { "action": "Run scored",                "points": 0.5  },
-      { "action": "Boundary bonus (4)",         "points": 1    },
-      { "action": "Six bonus (6)",              "points": 2    },
-      { "action": "30-run bonus",               "points": 4    },
-      { "action": "Half-century bonus (50+)",   "points": 8    },
-      { "action": "Century bonus (100+)",       "points": 16   },
-      { "action": "Duck (top 5 batting order)", "points": -2   }
+      {
+        "action": "Run scored",
+        "points": 0.5
+      },
+      {
+        "action": "Boundary bonus (4)",
+        "points": 1
+      },
+      {
+        "action": "Six bonus (6)",
+        "points": 2
+      },
+      {
+        "action": "30-run bonus",
+        "points": 4
+      },
+      {
+        "action": "Half-century bonus (50+)",
+        "points": 8
+      },
+      {
+        "action": "Century bonus (100+)",
+        "points": 16
+      },
+      {
+        "action": "Duck (top 5 batting order)",
+        "points": -2
+      }
     ],
     "bowling": [
-      { "action": "Wicket (excl. run-out)",  "points": 25 },
-      { "action": "LBW / Bowled bonus",      "points": 8  },
-      { "action": "3-wicket haul bonus",     "points": 4  },
-      { "action": "4-wicket haul bonus",     "points": 8  },
-      { "action": "5-wicket haul bonus",     "points": 16 },
-      { "action": "Maiden over",             "points": 12 }
+      {
+        "action": "Wicket (excl. run-out)",
+        "points": 25
+      },
+      {
+        "action": "LBW / Bowled bonus",
+        "points": 8
+      },
+      {
+        "action": "3-wicket haul bonus",
+        "points": 4
+      },
+      {
+        "action": "4-wicket haul bonus",
+        "points": 8
+      },
+      {
+        "action": "5-wicket haul bonus",
+        "points": 16
+      },
+      {
+        "action": "Maiden over",
+        "points": 12
+      }
     ],
     "fielding": [
-      { "action": "Catch",               "points": 8  },
-      { "action": "Stumping",            "points": 12 },
-      { "action": "Run-out (direct)",    "points": 12 },
-      { "action": "Run-out (indirect)",  "points": 6  }
+      {
+        "action": "Catch",
+        "points": 8
+      },
+      {
+        "action": "Stumping",
+        "points": 12
+      },
+      {
+        "action": "Run-out (direct)",
+        "points": 12
+      },
+      {
+        "action": "Run-out (indirect)",
+        "points": 6
+      }
     ],
     "multipliers": [
-      { "action": "Captain multiplier",      "points": 2   },
-      { "action": "Vice-Captain multiplier", "points": 1.5 }
+      {
+        "action": "Captain multiplier",
+        "points": 2
+      },
+      {
+        "action": "Vice-Captain multiplier",
+        "points": 1.5
+      }
     ]
   },
   "rounds": [
@@ -56,9 +125,8 @@
         "date": "2026-05-24",
         "time": "19:30",
         "deadline": "2026-05-24T19:00:00",
-        "status": "upcoming"
+        "status": "live"
       }
-     
     },
     {
       "id": "eliminator",
@@ -69,17 +137,17 @@
       "squadsDir": "data/dream11/eliminator/squads",
       "match": {
         "matchTitle": "IPL 2026 Eliminator",
-        "team1": "Chennai Super Kings",
-        "team2": "Sunrisers Hyderabad",
-        "team1Short": "CSK",
-        "team2Short": "SRH",
+        "team1": "TBD (3rd place)",
+        "team2": "TBD (4th place)",
+        "team1Short": "TBD",
+        "team2Short": "TBD",
         "team1Color": "#F9CD05",
         "team2Color": "#FF822A",
         "venue": "MA Chidambaram Stadium, Chennai",
         "date": "2026-05-25",
         "time": "19:30",
         "deadline": "2026-05-25T19:00:00",
-        "status": "upcoming"
+        "status": "live"
       }
     },
     {
@@ -91,10 +159,10 @@
       "squadsDir": "data/dream11/qualifier2/squads",
       "match": {
         "matchTitle": "IPL 2026 Qualifier 2",
-        "team1": "Gujarat Titans",
-        "team2": "Chennai Super Kings",
-        "team1Short": "GT",
-        "team2Short": "CSK",
+        "team1": "TBD (Loser of Qualifier 1)",
+        "team2": "TBD (Winner of Eliminator)",
+        "team1Short": "TBD",
+        "team2Short": "TBD",
         "team1Color": "#1C1C5B",
         "team2Color": "#F9CD05",
         "venue": "Eden Gardens, Kolkata",
@@ -113,10 +181,10 @@
       "squadsDir": "data/dream11/finals/squads",
       "match": {
         "matchTitle": "IPL 2026 Final",
-        "team1": "Royal Challengers Bengaluru",
-        "team2": "Chennai Super Kings",
-        "team1Short": "RCB",
-        "team2Short": "CSK",
+        "team1": "TBD (Loser of Qualifier 1)",
+        "team2": "TBD (2nd place)",
+        "team1Short": "TBD",
+        "team2Short": "TBD",
         "team1Color": "#C8102E",
         "team2Color": "#F9CD05",
         "venue": "Wankhede Stadium, Mumbai",
